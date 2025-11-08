@@ -3,6 +3,7 @@ module.exports = {
     extend: {
       fontFamily: {
         heros: ["TeXGyreHeros", "sans-serif"],
+        inter: ["var(--font-inter)"],
       },
     },
   },

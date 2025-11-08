@@ -1,21 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { New } from "../types/new";
-
-// export type NewsItem = {
-//   id: number;
-//   title: string;
-//   description: string;
-//   image: string;
-//   url?: string;
-//   day: string;
-//   month: string;
-// };
+import { New } from "../../types/new";
+import { toSlug } from "@/app/utils/slug";
 
 export default function ItemCardNew({ item }: { item: New }) {
-    const d = new Date(item.createDate);
+    const d = new Date(item.createdAt);
     const day = d.getDate();
     const month = d.toLocaleString("en", { month: "short" });
+
+
 
     return (
         <div className="relative flex flex-col group overflow-visible">
@@ -37,7 +30,7 @@ export default function ItemCardNew({ item }: { item: New }) {
                    transform transition-transform duration-300 ease-in-out 
                    group-hover:-translate-y-8"
             >
-                <Link href={item.url ?? "#"} className="hover:text-[#ff281c] transition-all">
+                <Link href={"/blog/" + toSlug(item.title)} className="hover:text-[#ff281c] transition-all">
                     <h2 className="font-bold text-[18px]">{item.title}</h2>
                 </Link>
 
@@ -47,7 +40,7 @@ export default function ItemCardNew({ item }: { item: New }) {
 
                 <div className="flex justify-center  cursor-pointer">
                     <Link
-                        href={item.url ?? "#"}
+                        href={"/blog/" + toSlug(item.title)}
                         className="text-[#4F4A37] group-hover:text-white transition-all"
                     >
                         <div

@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/grid";
 import Link from "next/link";
-import { Member } from "../types/member";
+import { Member } from "../../types/member";
 
 interface ListMemberProps {
     members: Member[];

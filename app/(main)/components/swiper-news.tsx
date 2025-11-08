@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { New } from "../../types/new";
+import { toSlug } from "@/app/utils/slug";
 
 interface ListNewProps {
   news: New[];
@@ -29,7 +30,7 @@ export default function SwiperNews({ news }: ListNewProps) {
       className="mySwiper"
     >
       {news.map((n) => {
-        const d = new Date(n.createDate);
+        const d = new Date(n.createdAt);
         const day = d.getDate();
         const month = d.toLocaleString("en", { month: "short" });
 
@@ -52,7 +53,7 @@ export default function SwiperNews({ news }: ListNewProps) {
               <div className="bg-[#fbf5e8] mx-5 -mt-10 px-5 pt-10 text-center z-10
                               transform transition-transform duration-300 ease-in-out 
                               group-hover:-translate-y-8">
-                <Link href={n.url ?? "#"} className="hover:text-[#ff281c] transition-all">
+                <Link href={"/blog/" + toSlug(n.title)} className="hover:text-[#ff281c] transition-all">
                   <h2 className="font-bold text-[18px]">{n.title}</h2>
                 </Link>
 
@@ -64,7 +65,7 @@ export default function SwiperNews({ news }: ListNewProps) {
                   <div className="border-2 border-[#ff281c] px-9.5 py-3.5 font-semibold rounded-full 
                                   group-hover:bg-[#ff281c] transition-all duration-300 ease-in-out">
                     <Link
-                      href={n.url ?? "#"}
+                      href={"/blog/" + toSlug(n.title)}
                       className="text-[#4F4A37] group-hover:text-white transition-all"
                     >
                       CHI TIẾT

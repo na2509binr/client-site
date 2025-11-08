@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
 import NewsList from "./list-news";
-import { news } from "../../types/new";
+import { news } from "../../types/new";;
 
 
 export default function BlogPage() {
+
     return (
         <div>
             <div className="relative h-[780px]">

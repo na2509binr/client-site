@@ -36,13 +36,14 @@ export const menuData: MenuItem[] = [
     title: "Tin tức",
     url: "/blog",
   },
+  // {
+  //   id:6,
+  //   title: "Xuất khẩu",
+  //   url: "/export",
+  // },
   {
     id:6,
-    title: "Xuất khẩu",
-    url: "/export",
-  },
-  {
-    id:7,
+    // id:7,
     title: "Liên hệ",
     url: "/contact",
   }

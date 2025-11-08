@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Partner } from "../types/partner";
+import { Partner } from "../../types/partner";
 
 
 interface ListPartnerProps {

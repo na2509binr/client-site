@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { New } from "../types/new";
+import { New } from "../../types/new";
 import ItemCardNew from "./item-card-new";
 // import ItemCardNew, { NewsItem } from "./ItemCard";
 

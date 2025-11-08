@@ -8,16 +8,33 @@ import "../fontawesome";
 import HeaderMobile from "./(main)/components/header-mobile";
 
 
+import { Nunito } from 'next/font/google';
+
+const nunito = Nunito({
+    subsets: ["latin", "vietnamese"],
+  // subsets: ['latin'],   // Chọn subset phù hợp, ví dụ latin hoặc vietnamese
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900'], // Chọn weight cần dùng
+  display: 'swap',      // Tối ưu hiển thị text
+});
 import { Raleway } from 'next/font/google';
 
-
-
-
 const raleway = Raleway({
-  subsets: ['latin'],   // Chọn subset phù hợp, ví dụ latin hoặc vietnamese
+    subsets: ["latin", "vietnamese"],
+  // subsets: ['latin'],   // Chọn subset phù hợp, ví dụ latin hoặc vietnamese
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], // Chọn weight cần dùng
   display: 'swap',      // Tối ưu hiển thị text
 });
+
+
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin", "vietnamese"],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  display: "swap",
+  variable: "--font-inter",
+});
+
 
 
 const geistSans = Geist({
@@ -103,9 +120,15 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
+
+        ${raleway.className}
+
       </head> */}
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${raleway.className}`}>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${nunito.className}`}
+        // className={`${geistSans.variable} ${geistMono.variable} antialiased ${raleway.className}`}
+        // className={`${geistSans.variable} ${geistMono.variable} antialiased ${inter.className}`}
+        > 
         {children}
       </body>
     </html>
