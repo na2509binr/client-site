@@ -35,7 +35,7 @@ export default function NewDetail({ post }: NewDetailProp) {
 
     return (
         <>
-            <div className="relative h-[480px]">
+            <div className="relative lg:h-[480px]">
                 <Image
                     className="z-0 dark:invert h-full object-cover "
                     src="/images/about-bg.jpg"
@@ -46,9 +46,9 @@ export default function NewDetail({ post }: NewDetailProp) {
                 />
                 <div className="absolute h-full top-0 left-0 right-0 bg-[#569f56]/60"></div>
 
-                <div className="absolute h-full w-full top-0 grid grid-cols-[1fr_3fr_2fr] items-center text-white">
+                <div className="absolute h-full w-full top-0 px-2 flex flex-col justify-center lg:grid grid-cols-[1fr_3fr_2fr] items-center text-white">
                     <div className="col-start-2">
-                        <h1 className="text-[60px] font-extrabold">
+                        <h1 className="text-[40px] lg:text-[60px] font-extrabold">
                             {post.title}
                         </h1>
                         <div className="text-[13px] font-semibold flex items-center space-x-0.75">

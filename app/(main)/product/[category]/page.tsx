@@ -22,7 +22,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
     return (
         <>
-            <div className="relative h-[600px]">
+            <div className="relative h-[400px] lg:h-[600px]">
                 <Image
                     className="z-0 dark:invert h-full object-cover "
                     src="/images/about-bg.jpg"
@@ -33,13 +33,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                 />
                 <div className="absolute h-full top-0 left-0 right-0 bg-[#569f56]/60"></div>
 
-                <div className="absolute h-full w-full top-0 grid grid-cols-[1fr_2fr_3fr] items-center text-white">
+                <div className="absolute h-full w-full top-0 px-2 flex flex-col justify-center lg:grid grid-cols-[1fr_5fr_1fr] xl:grid-cols-[1fr_2fr_3fr] items-center text-white">
                     <div className="col-start-2">
-                        <h1 className="text-[60px] font-extrabold">
+                        <h1 className="text-[40px] lg:text-[60px] font-extrabold">
                             {/* <span className="block text-[40px] font-extralight">SẢN PHẨM</span> */}
                             <span className="">{cate.name.toUpperCase()}</span>
                         </h1>
-                        <p className="my-6 ">
+                        <p className="my-6 text-[13px] lg:text-[16px]">
                             {cate.description}
                         </p>
                         <div className="text-[13px] font-semibold flex items-center space-x-0.75">
@@ -58,8 +58,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             </div>
 
             <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
-                <div className="col-start-2 grid grid-cols-[1fr_3fr] gap-x-10 my-30">
-                    <div className="">
+                <div className="col-start-2 grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-10 my-10 lg:my-30">
+                    <div className="row-start-2 lg:col-start-1 lg:row-start-1">
                         <h2 className="font-black text-[#333333] text-[20px]">DANH MỤC SẢN PHẨM</h2>
                         <ul className="list-disc list-inside space-y-8 text-[#333333] my-6 mb-15">
                                 {categories.map((cate) => {
@@ -74,7 +74,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                         </ul>
                     </div>
 
-                    <div>
+                    <div className="row-start-1 lg:col-start-2">
                         <ProductsPagination data={filteredProducts} cate={category} />
                     </div>
                 </div>

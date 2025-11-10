@@ -4,8 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { menuData } from "../../types/menu";
+import { usePathname } from "next/navigation";
 
 export default function HeaderMobile() {
+    const pathname = usePathname();
+    const isHome = pathname === "/";
+
     const [menuOpen, setMenuOpen] = useState(false);
     const [openMenuId, setOpenMenuId] = useState<number | null>(null);
 
@@ -45,7 +49,7 @@ export default function HeaderMobile() {
     );
 
     return (
-        <div className="bg-white shadow-xl px-2 md:px-3 lg:px-4 xl:grid xl:grid-cols-[1fr_7fr_1fr] mb-2">
+        <div className={`bg-white shadow-xl   px-2 md:px-3 lg:px-4 xl:grid xl:grid-cols-[1fr_7fr_1fr] mb-2`}>
             {/* Logo + Hamburger */}
             <div className="col-start-2 grid grid-cols-2 lg:grid-cols-[1fr_3fr_1fr] items-center">
 
@@ -120,8 +124,8 @@ export default function HeaderMobile() {
                                 {hasChildren && (
                                     <ul
                                         className={`overflow-hidden transition-all duration-300 ease-in-out 
-                        ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} ml-4 
-                        border-l border-gray-300 pl-3`}
+                                        ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"} ml-4 
+                                        border-l border-gray-300 pl-3`}
                                     >
                                         {renderChildren(menu.children || [])}
                                     </ul>

@@ -13,8 +13,8 @@ export default function AboutSubComponent() {
         <>
 
             <div>
-                <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_9fr] 2xl:grid-cols-[1fr_5fr]  h-[550px] ">
-                    <div className="col-start-2 grid grid-cols-2">
+                <div className="px-2 my-5 xl:my-0 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_9fr] 2xl:grid-cols-[1fr_5fr] h-full lg:h-[550px] ">
+                    <div className="col-start-2 grid grid-cols-1 lg:grid-cols-2">
                         <div className="flex flex-col items-start justify-center">
 
                             <h1 className="text-[40px] font-bold mb-5">GIỚI THIỆU SƠ LƯỢC <span className="font-light">CÔNG TY</span></h1>
@@ -30,8 +30,16 @@ export default function AboutSubComponent() {
                                 LIÊN HỆ
                             </Link>
                         </div>
-                        <div className="bg-[url('/images/section_01_bg.png')] bg-no-repeat bg-right">
-                        </div>
+                        {/* <div className="hidden lg:block bg-[url('/images/section_01_bg.png')] bg-no-repeat bg-right ">
+                        </div> */}
+                        <Image
+                            className="hidden lg:block z-0 dark:invert h-full object-cover"
+                            src="/images/section_01_bg.png"
+                            alt="Logo"
+                            width={600}
+                            height={20}
+                            priority
+                        />
                     </div>
 
 
@@ -39,8 +47,8 @@ export default function AboutSubComponent() {
                 </div>
 
                 {!isHome ?
-                    <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] py-25 bg-[#f5deb3]/30">
-                        <div className="col-start-2 flex items-center justify-between gap-x-8">
+                    <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] py-10 lg:py-25 bg-[#f5deb3]/30">
+                        <div className="col-start-2 flex flex-col lg:flex-row items-center justify-between gap-8">
                             <div className="flex justify-between items-center gap-x-8">
                                 <Image
                                     className="dark:invert"

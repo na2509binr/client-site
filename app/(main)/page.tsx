@@ -18,10 +18,10 @@ export default function Home() {
       <AboutSubComponent/>
 
 
-      <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] bg-[#f5deb3]/30">
+      <div className="px-2 pb-10 lg:pb-0 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] bg-[#f5deb3]/30">
         {/* <div className="col-start-2 w-full"> */}
         <div className="col-start-2 w-full">
-          <h1 className="text-[40px] font-thin mt-8 mb-12">
+          <h1 className="text-[35px] lg:text-[40px] font-thin pt-8 mb-12">
             SẢN PHẨM
             <span className="font-bold pl-2">ĐÓNG TÚI</span>
           </h1>
@@ -32,9 +32,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
+      <div className="px-2 pb-10 lg:pb-0 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
         <div className="col-start-2 w-full">
-          <h1 className="text-[40px] font-thin mt-8 mb-12">
+          <h1 className="text-[35px] lg:text-[40px] font-thin mt-8 mb-12">
             SẢN PHẨM
             <span className="font-bold pl-2">BÁN SỈ</span>
           </h1>
@@ -49,7 +49,7 @@ export default function Home() {
 
         <div className="col-start-2 w-full">
 
-          <h1 className="text-[40px] font-thin mt-20 mb-12 text-center">
+          <h1 className="text-[35px] lg:text-[40px] font-thin pt-20 mb-12 text-center">
             TIN TỨC
             <span className="font-bold pl-2">NỔI BẬT</span>
           </h1>

@@ -20,7 +20,7 @@ export default function ProductDetailClient({
 
     return (
         <>
-            <div className="relative h-[600px]">
+            <div className="relative lg:h-[600px]">
                 <Image
                     className="z-0 dark:invert h-full object-cover"
                     src="/images/about-bg.jpg"
@@ -31,13 +31,13 @@ export default function ProductDetailClient({
                 />
                 <div className="absolute h-full top-0 left-0 right-0 bg-[#569f56]/60"></div>
 
-                <div className="absolute h-full top-0 grid grid-cols-[1fr_2fr_3fr] items-center text-white">
+                <div className="absolute h-full top-0 px-2 flex flex-col justify-center lg:grid grid-cols-[1fr_2fr_3fr] items-center text-white">
                     <div className="col-start-2">
-                        <h1 className="text-[60px] font-extrabold">
+                        <h1 className="text-[40px] lg:text-[60px] font-extrabold">
                             {product.name.toUpperCase()}
                         </h1>
 
-                        <p className="my-6">{product.description}</p>
+                        {/* <p classNamse="my-6 text-[13px] lg:text-[16px]">{product.description}</p> */}
 
                         <div className="text-[13px] font-semibold flex items-center space-x-0.75">
                             <Link href="/" className="text-[#b3e53f]">
@@ -70,7 +70,7 @@ export default function ProductDetailClient({
                     <div className="container mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
 
                         {/* ✅ LEFT: Thumbnail List */}
-                        <div className="lg:col-span-2 flex flex-col gap-y-3 overflow-x-auto lg:overflow-visible">
+                        <div className="row-start-2 lg:row-start-1 lg:col-start-1  lg:col-span-2 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible">
                             {images.map((img, i) => (
                                 <button
                                     key={i}
@@ -90,7 +90,7 @@ export default function ProductDetailClient({
                         </div>
 
                         {/* ✅ CENTER: Main Image */}
-                        <div className="lg:col-span-5 flex justify-center">
+                        <div className="col-start-1 lg:row-start-1 lg:col-start-2 lg:col-span-5 flex justify-center">
                             <div className="rounded-lg p-4 max-h-[600px]">
                                 <Image
                                     src={activeImage}

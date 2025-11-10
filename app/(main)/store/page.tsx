@@ -36,7 +36,7 @@ export default function StoresPage() {
 
     return (
         <>
-            <div className="relative h-[600px]">
+            <div className="relative lg:h-[600px]">
                 <Image
                     className="z-0 dark:invert h-full object-cover "
                     src="/images/about-bg.jpg"
@@ -47,15 +47,15 @@ export default function StoresPage() {
                 />
                 <div className="absolute h-full top-0 left-0 right-0 bg-[#569f56]/60"></div>
 
-                <div className="absolute h-full w-full top-0 grid grid-cols-[1fr_2fr_3fr] items-center text-white">
+                <div className="absolute h-full w-full top-0 px-2 flex flex-col justify-center items-start lg:grid grid-cols-[1fr_2fr_3fr] lg:items-center text-white">
                     <div className="col-start-2">
-                        <h1 className="text-[60px] font-extrabold">
-                            <span className="block text-[40px] font-extralight">HỆ THỐNG</span>
+                        <h1 className="text-[40px] lg:text-[60px] font-extrabold">
+                            <span className="block text-[30px] lg:text-[40px] font-extralight">HỆ THỐNG</span>
                             <span className="">CỬA HÀNG</span>
                         </h1>
-                        <p className="my-6 ">
+                        {/* <p className="my-6 text-[13px] lg:text-[16px]">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
+                        </p> */}
                         <div className="text-[13px] font-semibold flex items-center space-x-0.75">
                             <Link href="/" className="text-[#b3e53f]">
                                 <span>Trang chủ</span>
@@ -71,7 +71,7 @@ export default function StoresPage() {
             <div className="px-2 py-20 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
                 <div className="col-start-2 w-full">
                     <h1 className="text-[40px] font-bold text-center pb-8">Hệ thống cửa hàng</h1>
-                    <div className="grid grid-cols-[2fr_3fr] gap-x-12 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 items-start">
                         <div className="bg-[#569f56] rounded-md p-10">
                             <h2 className="text-[20px] text-amber-100">Chọn cửa hàng theo Tỉnh/Thành phố</h2>
                             <div className="my-3">

@@ -22,7 +22,7 @@ export default function ProductsPagination({ data, cate }: Props) {
     return (
         <div>
             {/* GRID 3 columns × 2 rows */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4 lg:gap-10">
                 {currentItems.map((item) => (
                     <ItemCardProduct key={item.id} item={item} cate={cate} />
                 ))}

@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function ProductPage() {
     return (
         <>
-            <div className="relative h-[780px]">
+            <div className="relative lg:h-[780px]">
                 <Image
                     className="z-0 dark:invert h-full object-cover "
                     src="/images/about-bg.jpg"
@@ -17,10 +17,10 @@ export default function ProductPage() {
                 />
                 <div className="absolute h-full top-0 left-0 right-0 bg-[#569f56]/60"></div>
 
-                <div className="absolute h-full top-0 grid grid-cols-[1fr_2fr_3fr] items-center text-white">
+                <div className="absolute h-full top-0  px-2 flex flex-col justify-center lg:grid lg:grid-cols-[1fr_2fr_3fr] items-center text-white">
                     <div className="col-start-2">
-                        <h1 className="text-[60px] font-extrabold">
-                            <span className="block text-[40px] font-extralight">SẢN PHẨM</span>
+                        <h1 className="text-[40px] lg:text-[60px] font-extrabold">
+                            <span className="block text-[30px] lg:text-[40px] font-extralight">SẢN PHẨM</span>
                             <span className="">TIÊU BIỂU</span>
                         </h1>
                         <p className="my-6 ">
