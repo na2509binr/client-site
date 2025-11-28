@@ -19,7 +19,7 @@ export default function Header() {
 
         <div
             className={`
-        ${isHome ? "hidden px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] bg-transparent"
+            ${isHome ? "hidden px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] bg-transparent"
                     : "px-10 absolute top-0 left-0 right-0 z-10"}
       `}
         >
@@ -67,10 +67,6 @@ export default function Header() {
                     {/* <nav className="bg-white shadow px-6 py-4"> */}
                     <nav className="flex-1 flex justify-end items-center space-x-15 py-4 font-semibold ">
                         <ul className={`flex space-x-10 ${isHome ? " text-gray-700" : ""}`} >
-                            {/* {menuData.map((menu) => {
-
-                                <MenuItem key={menu.id} menu={menu} isHome={isHome} />
-                            } */}
 
                             {menuData.map((menu) => {
                                 return <MenuItem key={menu.id} menu={menu} isHome={isHome} />;

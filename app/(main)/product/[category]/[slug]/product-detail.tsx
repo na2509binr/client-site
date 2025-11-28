@@ -39,6 +39,7 @@ export default function ProductDetailClient({
 
                         {/* <p classNamse="my-6 text-[13px] lg:text-[16px]">{product.description}</p> */}
 
+             
                         <div className="text-[13px] font-semibold flex items-center space-x-0.75">
                             <Link href="/" className="text-[#b3e53f]">
                                 Trang chủ

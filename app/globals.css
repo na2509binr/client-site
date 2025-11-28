@@ -134,6 +134,18 @@ body {
   .flip-rotate {
     transform: rotateY(180deg);
   }
+
+
+    .custom-border {
+    position: relative;
+  }
+
+  .custom-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
 }
 
 
