@@ -2,6 +2,7 @@ import { ChevronsRight, Link } from "lucide-react";
 import Image from "next/image"
 import CustomDashedBorder from "./product-border";
 import CertificateSection from "./certificate";
+import Footer from "./footer";
 
 
 export default function ExportPage() {
@@ -293,6 +294,7 @@ export default function ExportPage() {
 
 
 <CertificateSection />
+<Footer />
       {/* <div className="p-10 bg-[#837c1f] h-[600px]">
         <h2 className="text-4xl font-bold">Đây là Export Page</h2>
         <p className="mt-4">Nội dung hoàn toàn tách biệt với site chính</p>

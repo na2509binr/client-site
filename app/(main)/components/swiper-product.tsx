@@ -13,7 +13,7 @@ import Link from "next/link";
 import { toSlug } from "../../utils/slug";
 
 interface ListProductProps {
-  products: Product[];
+    products: Product[];
 }
 
 export default function SwiperProduct({ products }: ListProductProps) {
@@ -35,7 +35,7 @@ export default function SwiperProduct({ products }: ListProductProps) {
 
     const renderSlide2xl = (slideItems: Product[], idx: number) => (
         <SwiperSlide key={idx}>
-            <div className="grid grid-cols-4 gap-8">
+            <div className="grid grid-cols-4 gap-8 items-stretch">
                 {slideItems.map((product) => (
 
                     <div
@@ -77,8 +77,8 @@ export default function SwiperProduct({ products }: ListProductProps) {
 
 
     const renderSlideMobile = (product: Product) => (
-        <SwiperSlide key={product.id}>
-            <div className="flex flex-col bg-white border border-[#e5e5e5] overflow-hidden">
+        <SwiperSlide key={product.id} className="h-auto!">
+            <div className="flex flex-col h-full bg-white border border-[#e5e5e5] overflow-hidden">
                 <div className="relative w-full aspect-4/3">
                     <Image
                         src={product.image}
@@ -113,7 +113,7 @@ export default function SwiperProduct({ products }: ListProductProps) {
 
     return (
         <div className="my-8">
-            {is2xl ? (
+            {/* {is2xl ? (
                 <Swiper
                     className="swiperListProduct"
                     modules={[Navigation, Pagination]}
@@ -137,12 +137,30 @@ export default function SwiperProduct({ products }: ListProductProps) {
                         768: { slidesPerView: 2 },
                         1024: { slidesPerView: 3 },
                         1280: { slidesPerView: 4 },
-                        1536: { slidesPerView: 1 },
+                        1536: { slidesPerView: 5 },
                     }}
                 >
                     {products.map(renderSlideMobile)}
                 </Swiper>
-            )}
+            )} */}
+
+            <Swiper
+                className="swiperListProduct"
+                modules={[Navigation, Pagination]}
+                navigation
+                // loop={true}
+                autoplay={{ delay: 100 }}
+                spaceBetween={20}
+                breakpoints={{
+                    0: { slidesPerView: 1 },
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                    1280: { slidesPerView: 4 },
+                    1536: { slidesPerView: 5 },
+                }}
+            >
+                {products.map(renderSlideMobile)}
+            </Swiper>
         </div>
     );
 };

@@ -41,11 +41,11 @@ export default function Banner() {
                 </SwiperSlide>
             </Swiper>
 
-            <div className="w-full my-3.75">
+            {/* <div className="w-full my-3.75">
                 <div className="hidden lg:flex w-full h-[280px] gap-4 px-3">
                     {images.map((img, i) => (
                         <div key={i} className="relative flex-1">
-                            {/* <Image src={img} alt={`Banner ${i}`} sizes="(min-width: 1024px) 25vw, 100vw" fill className="object-cover" /> */}
+
                             <Image src={img} alt={`Banner ${i}`} fill className="object-cover" priority={true}/>
                         </div>
                     ))}
@@ -69,14 +69,14 @@ export default function Banner() {
                         {images.map((img, i) => (
                             <SwiperSlide key={i}>
                                 <div className="relative w-full h-[200px]">
-                                    {/* <Image src={img} alt={`Banner ${i}`} sizes="100vw" fill className="object-cover rounded-xl" /> */}
+
                                     <Image src={img} alt={`Banner ${i}`} fill className="object-cover rounded-xl" priority={true}/>
                                 </div>
                             </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

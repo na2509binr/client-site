@@ -13,7 +13,7 @@ export default function AboutSubComponent() {
         <>
 
             <div>
-                <div className="px-2 my-5 xl:my-0 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_9fr] 2xl:grid-cols-[1fr_5fr] h-full lg:h-[550px] ">
+                <div className="px-2 my-5 xl:my-0 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] h-full lg:h-[550px] ">
                     <div className="col-start-2 grid grid-cols-1 lg:grid-cols-2">
                         <div className="flex flex-col items-start justify-center">
 

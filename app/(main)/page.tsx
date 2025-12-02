@@ -23,16 +23,16 @@ export default function Home() {
         <div className="col-start-2 w-full">
           <h1 className="text-[35px] lg:text-[40px] font-thin pt-8 mb-12">
             SẢN PHẨM
-            <span className="font-bold pl-2">ĐÓNG TÚI</span>
+            <span className="font-bold pl-2">NỔI BẬT</span>
           </h1>
 
           <div className="w-full max-w-6xl 2xl:max-w-7xl">
-            <SwiperProduct products={products} />
+            <SwiperProduct products={products.slice(0, 8)} />
           </div>
         </div>
       </div>
 
-      <div className="px-2 pb-10 lg:pb-0 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
+      {/* <div className="px-2 pb-10 lg:pb-0 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
         <div className="col-start-2 w-full">
           <h1 className="text-[35px] lg:text-[40px] font-thin mt-8 mb-12">
             SẢN PHẨM
@@ -43,7 +43,7 @@ export default function Home() {
             <SwiperProduct products={products} />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="px-2 pb-15 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] bg-[#f5deb3]/30">
 
