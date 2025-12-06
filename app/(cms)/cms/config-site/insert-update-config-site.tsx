@@ -156,7 +156,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedin, FaYoutube, FaPinterest } from "react-icons/fa";
 import { SiTiktok, SiX, SiZalo } from "react-icons/si";
 import { ConfigSite } from "@/app/types/config-stie";

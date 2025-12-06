@@ -400,10 +400,8 @@
 // pages/index.tsx
 import { faCircle, faCircleCheck, faHandshake, faPeopleRoof, faRotate } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Head from "next/head";
-import Script from "next/script";
-import React from "react";
 import CertificateSection from "../components/certificate";
+import { JSX } from "react";
 
 export default function Home(): JSX.Element {
 
