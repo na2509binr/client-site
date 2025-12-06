@@ -13,7 +13,9 @@ async function request<T>(
 
 
     const res = await fetch(`${API_URL}${endpoint}`, {
+      cache: "no-store",
       headers: {
+        "Accept": "application/json",
         "Content-Type": "application/json",
         ...(options.headers || {}),
       },
@@ -23,7 +25,11 @@ async function request<T>(
     if (!res.ok) {
       throw new Error(`API error: ${res.status} - ${res.statusText}`);
     }
+console.log("Status:", res.status);
+console.log("Headers:", Object.fromEntries(res.headers.entries()));
 
+const text = await res.text();
+console.log("Body:", text);
     return res.json();
   } catch (err) {
     console.log("API_URL:" + API_URL);
