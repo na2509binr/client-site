@@ -1,3 +1,5 @@
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
 export default function MenuItem({ menu, isHome }: any) {
@@ -12,7 +14,12 @@ export default function MenuItem({ menu, isHome }: any) {
         }`}
       >
         <div className="flex items-center space-x-0.75">
-          <span>{menu.title}</span>
+          {menu.title !== "Trang chủ" ? (
+            <span>{menu.title}</span>
+          ) : (
+            <FontAwesomeIcon icon={faHouse} />
+          )}
+
 
           {hasChildren && (
             <svg

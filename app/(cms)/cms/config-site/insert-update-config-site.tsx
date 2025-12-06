@@ -160,7 +160,8 @@ import { useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedin, FaYoutube, FaPinterest } from "react-icons/fa";
 import { SiTiktok, SiX, SiZalo } from "react-icons/si";
 import { ConfigSite } from "@/app/types/config-stie";
-import CKEditorComponent from "../component-shared/CKEditor";
+import Image from "next/image";
+import ImageUpload from "../component-shared/ImageUpload";
 
 
 export default function UpdateConfigSiteForm() {
@@ -183,20 +184,20 @@ export default function UpdateConfigSiteForm() {
   //   fetchData();
   // }, []);
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/config-site/get-all`);
-      const data = await res.json();
-      setFormData(Array.isArray(data) ? data[0] : data); // lấy bản ghi đầu tiên nếu trả về mảng
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-  fetchData();
-}, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/config-site/get-all`);
+        const data = await res.json();
+        setFormData(Array.isArray(data) ? data[0] : data); // lấy bản ghi đầu tiên nếu trả về mảng
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   console.log(formData);
 
@@ -303,17 +304,61 @@ useEffect(() => {
             </div> */}
 
             {/* Logo */}
-            <div>
-              <label>Logo</label>
-              <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, "image")} className="w-full border rounded px-3 py-2" />
-              {formData.image && <img src={formData.image} alt="Logo" className="mt-1 w-24 h-24 object-cover rounded " />}
+            <div >
+              <label className="block mb-1 font-medium">Logo</label>
+              {/* <ImageUpload
+                folderName="config-site"
+                onUpload={(url) => setFormData({ ...formData, image: url })}
+              />
+              {formData.image && (
+                <div className="bg-gray-200 p-2 flex justify-center items-center mt-2 rounded-md">
+                  <img
+                    src={formData.image}
+                    alt={formData.aboutText ?? ""}
+                    width={200}
+                    height={200}
+                    className="object-cover"
+                  />
+                </div>
+              )} */}
+              <ImageUpload
+    folderName="config-site"
+    value={formData.image}                         // <-- nhận giá trị từ form
+    onUpload={(url) => setFormData({
+        ...formData,
+        image: url                                 // <-- update form như input text
+    })}
+/>
+
             </div>
 
             {/* Favicon */}
-            <div>
-              <label>Favicon</label>
-              <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, "favicon")} className="w-full border rounded px-3 py-2" />
-              {formData.favicon && <img src={formData.favicon} alt="Favicon" className="mt-1 w-12 h-12 object-cover rounded " />}
+            <div >
+              <label className="block mb-1 font-medium">Favicon</label>
+              {/* <ImageUpload
+                folderName="config-site"
+                onUpload={(url) => setFormData({ ...formData, favicon: url })}
+              />
+              {formData.favicon && (
+                <div className="bg-gray-200 p-2 flex justify-center items-center mt-2 rounded-md">
+                  <img
+                    src={formData.favicon}
+                    alt="Favicon"
+                    width={64}
+                    height={64}
+                    className="object-cover"
+                  />
+                </div>
+              )} */}
+              <ImageUpload
+    folderName="config-site"
+    value={formData.favicon}                         // <-- nhận giá trị từ form
+    onUpload={(url) => setFormData({
+        ...formData,
+        favicon: url                                 // <-- update form như input text
+    })}
+/>
+
             </div>
 
             <div>

@@ -1,14 +1,260 @@
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image"
-import Link from "next/link";
+// import BannerPages from "@/app/(main)/components/banner-pages";
+// // import { categories, products } from "@/app/types/product";
+// import { categoriesWithSlug, toSlug } from "@/app/utils/slug";
+// // import { categoriesWithSlug } from "@/data/categoryWithSlug";
 
-export default function ProductPage() {
+// // import { toSlug } from "@/utils/slug";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+// import ProductsPagination from "./product-pagination";
+// import { CategoryProductAPI, ProductAPI } from "@/app/utils/api";
+
+
+// export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
+//     const categories = await CategoryProductAPI.getAll();
+//     const products = await ProductAPI.getAll();
+//     const { category } = await params;
+//     console.log(category);
+//     // tìm category theo slug
+//     const cate = categoriesWithSlug.find((c: { slug: string; }) => c.slug === category);
+//     if (!cate) return <h1>Category not found</h1>;
+
+//     // lọc sản phẩm theo cateId
+//     const filteredProducts = products.filter(p => p.cateId === cate.id);
+
+//     return (
+//         <>
+//             <div className="relative h-[400px] lg:h-[600px]">
+//                 <Image
+//                     className="z-0 dark:invert h-full object-cover "
+//                     src="/images/about-bg.jpg"
+//                     alt="Logo"
+//                     width={1900}
+//                     height={20}
+//                     priority
+//                 />
+//                 <div className="absolute h-full top-0 left-0 right-0 bg-[#569f56]/60"></div>
+
+//                 <div className="absolute h-full w-full top-0 px-2 flex flex-col justify-center lg:grid grid-cols-[1fr_5fr_1fr] xl:grid-cols-[1fr_2fr_3fr] items-center text-white">
+//                     <div className="col-start-2">
+//                         <h1 className="text-[40px] lg:text-[60px] font-extrabold">
+//                             {/* <span className="block text-[40px] font-extralight">SẢN PHẨM</span> */}
+//                             <span className="">{cate.name.toUpperCase()}</span>
+//                         </h1>
+//                         <p className="my-6 text-[13px] lg:text-[16px]">
+//                             {cate.description}
+//                         </p>
+//                         <div className="text-[13px] font-semibold flex items-center space-x-0.75">
+//                             <Link href="/" className="text-[#b3e53f]">
+//                                 <span>Trang chủ</span>
+//                             </Link>
+//                             <FontAwesomeIcon icon={faAngleRight} />
+//                             <Link href="/product" className="text-[#b3e53f]">
+//                                 <span>Sản phẩm</span>
+//                             </Link>
+//                             <FontAwesomeIcon icon={faAngleRight} />
+//                             <span>{cate.name}</span>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+
+//             <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
+//                 <div className="col-start-2 grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-10 my-10 lg:my-30">
+//                     <div className="row-start-2 lg:col-start-1 lg:row-start-1">
+//                         <h2 className="font-black text-[#333333] text-[20px]">DANH MỤC SẢN PHẨM</h2>
+//                         <ul className="list-disc list-inside space-y-8 text-[#333333] my-6 mb-15">
+//                             {categories.map((cate) => {
+//                                 return (
+//                                     <li key={cate.id}>
+//                                         <Link href={toSlug(cate.name)} className="hover:text-[#913e18]">
+//                                             <span>{cate.name}</span>
+//                                         </Link>
+//                                     </li>
+//                                 );
+//                             })}
+//                         </ul>
+//                     </div>
+
+//                     <div className="row-start-1 lg:col-start-2">
+//                         <ProductsPagination data={filteredProducts} cate={category} />
+//                     </div>
+//                 </div>
+//             </div>
+//         </>
+//     );
+// }
+
+
+
+
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import { useParams } from "next/navigation";
+// import BannerPages from "@/app/(main)/components/banner-pages";
+// import { categoriesWithSlug, toSlug } from "@/app/utils/slug";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+// import ProductsPagination from "./product-pagination";
+// import { CategoryProductAPI, ProductAPI } from "@/app/utils/api";
+
+// export default function CategoryPage() {
+//     const { category } = useParams<{ category: string }>();
+
+//     const [categories, setCategories] = useState<any[]>([]);
+//     const [products, setProducts] = useState<any[]>([]);
+//     const [loading, setLoading] = useState(true);
+
+
+
+//     useEffect(() => {
+//         CategoryProductAPI.getAll().then(setCategories);
+//     }, []);
+//     useEffect(() => {
+//         ProductAPI.getFiltByCateId().then(setProducts);
+//     }, []);
+
+
+//     // useEffect(() => {
+//     //     async function fetchData() {
+//     //         try {
+//     //             const cateData = await CategoryProductAPI.getAll();
+//     //             const proData = await ProductAPI.getAll();
+
+//     //             setCategories(cateData);
+//     //             setProducts(proData);
+//     //         } finally {
+//     //             setLoading(false);
+//     //         }
+//     //     }
+
+//     //     fetchData();
+//     // }, []);
+
+//     // if (loading) return <p>Đang tải...</p>;
+
+//     // const cate = categories.find((c) => c.slug === category);
+//     // if (!cate) return <h1>Category not found</h1>;
+
+//     const filteredProducts = products.filter((p) => p.cateId === cate.id);
+
+//     return (
+//         <>
+//             <div className="relative h-[400px] lg:h-[600px]">
+//                 <Image
+//                     className="z-0 dark:invert h-full object-cover"
+//                     src="/images/about-bg.jpg"
+//                     alt="Logo"
+//                     width={1900}
+//                     height={20}
+//                     priority
+//                 />
+//                 <div className="absolute h-full top-0 left-0 right-0 bg-[#569f56]/60"></div>
+
+//                 <div className="absolute h-full w-full top-0 px-2 flex flex-col justify-center lg:grid grid-cols-[1fr_5fr_1fr] xl:grid-cols-[1fr_2fr_3fr] items-center text-white">
+//                     <div className="col-start-2">
+//                         {/* <h1 className="text-[40px] lg:text-[60px] font-extrabold">
+//                             {cate.name.toUpperCase()}
+//                         </h1>
+//                         <p className="my-6 text-[13px] lg:text-[16px]">
+//                             {cate.description}
+//                         </p> */}
+//                         <div className="text-[13px] font-semibold flex items-center space-x-0.75">
+//                             <Link href="/" className="text-[#b3e53f]">
+//                                 <span>Trang chủ</span>
+//                             </Link>
+//                             <FontAwesomeIcon icon={faAngleRight} />
+//                             <Link href="/product" className="text-[#b3e53f]">
+//                                 <span>Sản phẩm</span>
+//                             </Link>
+//                             {/* <FontAwesomeIcon icon={faAngleRight} />
+//                             <span>{cate.name}</span> */}
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+
+//             <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
+//                 <div className="col-start-2 grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-10 my-10 lg:my-30">
+//                     <div className="row-start-2 lg:col-start-1 lg:row-start-1">
+//                         <h2 className="font-black text-[#333333] text-[20px]">
+//                             DANH MỤC SẢN PHẨM
+//                         </h2>
+//                         <ul className="list-disc list-inside space-y-8 text-[#333333] my-6 mb-15">
+//                             {categories.map((cate) => (
+//                                 <li key={cate.id}>
+//                                     <Link
+//                                         href={toSlug(cate.name)}
+//                                         className="hover:text-[#913e18]"
+//                                     >
+//                                         <span>{cate.name}</span>
+//                                     </Link>
+//                                 </li>
+//                             ))}
+//                         </ul>
+//                     </div>
+
+//                     <div className="row-start-1 lg:col-start-2">
+//                         <ProductsPagination data={filteredProducts} cate={category as string} />
+//                     </div>
+//                 </div>
+//             </div>
+//         </>
+//     );
+// }
+
+
+
+
+
+
+
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import ProductsPagination from "./product-pagination";
+import { CategoryProductAPI, ProductAPI } from "@/app/utils/api";
+import { toSlug } from "@/app/utils/slug";
+import { ChevronRight } from "lucide-react";
+
+export default function CategoryPage() {
+
+    const [categories, setCategories] = useState<any[]>([]);
+    const [products, setProducts] = useState<any[]>([]);
+    const [cateId, setCateId] = useState<number>(-1);   // ⭐ mặc định load tất cả
+    const [loading, setLoading] = useState(true);
+
+    // Load categories 1 lần
+    useEffect(() => {
+        CategoryProductAPI.getAll().then((data) => {
+            setCategories(data);
+        });
+    }, []);
+
+    // Load products theo cateId
+    useEffect(() => {
+        setLoading(true);
+        ProductAPI.getFiltByCateId(cateId).then((data) => {
+            setProducts(data as any[]);
+            setLoading(false);
+        });
+    }, [cateId]);   // ⭐ mỗi lần cateId đổi → gọi lại API
+
     return (
         <>
-            <div className="relative lg:h-[780px]">
+            {/* Banner */}
+            <div className="relative h-[400px] lg:h-[600px]">
                 <Image
-                    className="z-0 dark:invert h-full object-cover "
+                    className="z-0 dark:invert h-full object-cover"
                     src="/images/about-bg.jpg"
                     alt="Logo"
                     width={1900}
@@ -17,224 +263,64 @@ export default function ProductPage() {
                 />
                 <div className="absolute h-full top-0 left-0 right-0 bg-[#569f56]/60"></div>
 
-                <div className="absolute h-full top-0  px-2 flex flex-col justify-center lg:grid lg:grid-cols-[1fr_2fr_3fr] items-center text-white">
+                <div className="absolute h-full w-full top-0 px-2 flex flex-col justify-center lg:grid grid-cols-[1fr_5fr_1fr] xl:grid-cols-[1fr_2fr_3fr] items-center text-white">
                     <div className="col-start-2">
                         <h1 className="text-[40px] lg:text-[60px] font-extrabold">
-                            <span className="block text-[30px] lg:text-[40px] font-extralight">SẢN PHẨM</span>
-                            <span className="">TIÊU BIỂU</span>
+                            DANH MỤC SẢN PHẨM
                         </h1>
-                        <p className="my-6 ">
-                            The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English
-                        </p>
                         <div className="text-[13px] font-semibold flex items-center space-x-0.75">
                             <Link href="/" className="text-[#b3e53f]">
                                 <span>Trang chủ</span>
                             </Link>
                             <FontAwesomeIcon icon={faAngleRight} />
-                            <span>Sản phẩm</span>
+                            <Link href="/product" className="text-[#b3e53f]">
+                                <span>Sản phẩm</span>
+                            </Link>
                         </div>
                     </div>
                 </div>
             </div>
 
+            {/* Content */}
             <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
-                <div className="col-start-2 grid grid-cols-[2fr_1fr] items-center gap-x-10 my-30">
-                    <div className="px-20">
-                        <h2 className="text-[40px] font-black">
-                            AGRO FARM
-                            <span className="font-thin pl-2">ECOLOGY PRODUCTS</span>
-                        </h2>
-                        <p className="text-[14px] text-[#666] my-6.25">
-                            <strong>
+                <div className="col-start-2 grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-10 my-10 lg:my-30">
 
-                                Agro is a high-quality service, innovative technologies and a wide product range that meet the requirements of modern farmers. Speсtr-Agro is a united team of high-class professionals working for the growth and development of the agricultural business in USA.
-                            </strong>
-                        </p>
-                        <p className="text-[14px] text-[#666]">
-                            When the baby greens are ready for harvest, timing and temperature rule the day. And at the perfect moment, the race begins. During the hotter summer months, Earthbound Farm laborers start their day at 3 a.m., harvesting the baby leaves before the temperature reaches 80 degrees, at which point the leaves become too soft to pick. Stan Pura, director of farm operations and one of Earthbound Farm’s partners, designed a unique baby-lettuce harvester that picks easily-torn baby greens quickly and consistently. Working in a pattern of overlapping rings, eight people variously direct and drive the machine and put the mechanically picked greens into plastic totes. The harvesting machine has a continuous looping blade that goes through a sharpener with each rotation. After the machine cuts the leaves, it blows them onto a mesh grid that allows small leaves and rocks to fall through.
-                        </p>
-                    </div>
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/img-1.webp"
-                        alt="Logo"
-                        width={350}
-                        height={20}
-                        priority
-                    />
-                </div>
-            </div>
+                    {/* Sidebar */}
+                    <div className="row-start-2 lg:col-start-1 lg:row-start-1">
+                        <ul className="list-inside space-y-6 text-[#333333] my-6 mb-15">
+                            <li className="list-none font-black text-[#333333] text-[20px]">
+                                <span
+                                    className={`cursor-pointer hover:text-[#913e18]`}
+                                    onClick={() => setCateId(-1)}
+                                >
+                                    TẤT CẢ SẢN PHẨM
+                                </span>
+                            </li>
 
-
-            <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] pb-10">
-                <div className="col-start-2 grid grid-cols-2 items-center gap-x-10">
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/img-2.jpg"
-                        alt="Logo"
-                        width={800}
-                        height={20}
-                        priority
-                    />
-                    <div className="px-20">
-                        <h2 className="text-[30px] font-black">
-                            THE CROPS
-                        </h2>
-                        <p className="text-[14px] text-[#666] my-5">
-                            Evulates vast a real proven works discount secure care. Market invigorate a awesome handcrafted bigger comes newer recommended lifetime. Odor to yummy high racy bonus soaking mouthwatering. First superior full-bodied drink. Like outstanding odor economical deal clinically. Odor to yummy high racy bonus soaking
-                        </p>
-
-                        <Link href="/" className="mt-5 border-2 border-[#ff281c] px-5.5 py-2 font-semibold rounded-full hover:bg-[#ff281c] hover:text-white transition-all duration-300 ease-in-out">
-                            ĐỌC THÊM
-                        </Link>
+                            {categories.map((cate) => (
+                                <li key={cate.id} className="flex items-center gap-1">
+                                    <ChevronRight />
+                                    <span
+                                        onClick={() => setCateId(cate.id)}
+                                        className={`cursor-pointer hover:text-[#913e18] ${cateId === cate.id ? "font-bold" : ""}`}
+                                    >
+                                        {cate.title}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
-                </div>
-                <div className="flex justify-end items-center -ml-20">
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/bg-1.png"
-                        alt="Logo"
-                        width={300}
-                        height={20}
-                        priority
-                    />
-                </div>
-            </div>
-            <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] pb-10">
-                <div className="flex justify-start items-center -ml-16">
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/bg-2.png"
-                        alt="Logo"
-                        width={300}
-                        height={20}
-                        priority
-                    />
-                </div>
-                <div className="col-start-2 grid grid-cols-2 items-center gap-x-10">
-
-                    <div className="px-20">
-                        <h2 className="text-[30px] font-black">
-                            THE CROPS
-                        </h2>
-                        <p className="text-[14px] text-[#666] my-5">
-                            Evulates vast a real proven works discount secure care. Market invigorate a awesome handcrafted bigger comes newer recommended lifetime. Odor to yummy high racy bonus soaking mouthwatering. First superior full-bodied drink. Like outstanding odor economical deal clinically. Odor to yummy high racy bonus soaking
-                        </p>
-
-                        <Link href="/" className="mt-5 border-2 border-[#ff281c] px-5.5 py-2 font-semibold rounded-full hover:bg-[#ff281c] hover:text-white transition-all duration-300 ease-in-out">
-                            ĐỌC THÊM
-                        </Link>
+                    {/* Products */}
+                    <div className="row-start-1 lg:col-start-2">
+                        {loading ? (
+                            <p>Đang tải...</p>
+                        ) : (
+                            <ProductsPagination data={products} cate={cateId.toString()} />
+                        )}
                     </div>
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/img-3.jpg"
-                        alt="Logo"
-                        width={800}
-                        height={20}
-                        priority
-                    />
-                </div>
-
-            </div>
-            <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] pb-10">
-                <div className="col-start-2 grid grid-cols-2 items-center gap-x-10">
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/img-4.jpg"
-                        alt="Logo"
-                        width={800}
-                        height={20}
-                        priority
-                    />
-                    <div className="px-20">
-                        <h2 className="text-[30px] font-black">
-                            THE CROPS
-                        </h2>
-                        <p className="text-[14px] text-[#666] my-5">
-                            Evulates vast a real proven works discount secure care. Market invigorate a awesome handcrafted bigger comes newer recommended lifetime. Odor to yummy high racy bonus soaking mouthwatering. First superior full-bodied drink. Like outstanding odor economical deal clinically. Odor to yummy high racy bonus soaking
-                        </p>
-
-                        <Link href="/" className="mt-5 border-2 border-[#ff281c] px-5.5 py-2 font-semibold rounded-full hover:bg-[#ff281c] hover:text-white transition-all duration-300 ease-in-out">
-                            ĐỌC THÊM
-                        </Link>
-                    </div>
-
-                </div>
-                <div className="flex justify-end items-center -mr-11">
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/bg-1.png"
-                        alt="Logo"
-                        width={300}
-                        height={20}
-                        priority
-                    />
                 </div>
             </div>
-
-            <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] pb-10">
-                <div className="flex justify-start items-center -ml-16">
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/bg-2.png"
-                        alt="Logo"
-                        width={300}
-                        height={20}
-                        priority
-                    />
-                </div>
-                <div className="col-start-2 grid grid-cols-2 items-center gap-x-10">
-
-                    <div className="px-20">
-                        <h2 className="text-[30px] font-black">
-                            THE CROPS
-                        </h2>
-                        <p className="text-[14px] text-[#666] my-5">
-                            Evulates vast a real proven works discount secure care. Market invigorate a awesome handcrafted bigger comes newer recommended lifetime. Odor to yummy high racy bonus soaking mouthwatering. First superior full-bodied drink. Like outstanding odor economical deal clinically. Odor to yummy high racy bonus soaking
-                        </p>
-
-                        <Link href="/" className="mt-5 border-2 border-[#ff281c] px-5.5 py-2 font-semibold rounded-full hover:bg-[#ff281c] hover:text-white transition-all duration-300 ease-in-out">
-                            ĐỌC THÊM
-                        </Link>
-                    </div>
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/img-5.jpg"
-                        alt="Logo"
-                        width={800}
-                        height={20}
-                        priority
-                    />
-                </div>
-            </div>
-
-            <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] pb-80 bg-cover bg-center bg-no-repeat bg-[url('/images/product/product-page/bg-lg.png')]">
-                <div className="col-start-2 grid grid-cols-2 items-center gap-x-10">
-                    <Image
-                        className="dark:invert"
-                        src="/images/product/product-page/img-6.jpg"
-                        alt="Logo"
-                        width={800}
-                        height={20}
-                        priority
-                    />
-                    <div className="px-20">
-                        <h2 className="text-[30px] font-black">
-                            THE CROPS
-                        </h2>
-                        <p className="text-[14px] text-[#666] my-5">
-                            Evulates vast a real proven works discount secure care. Market invigorate a awesome handcrafted bigger comes newer recommended lifetime. Odor to yummy high racy bonus soaking mouthwatering. First superior full-bodied drink. Like outstanding odor economical deal clinically. Odor to yummy high racy bonus soaking
-                        </p>
-
-                        <Link href="/" className="mt-5 border-2 border-[#ff281c] px-5.5 py-2 font-semibold rounded-full hover:bg-[#ff281c] hover:text-white transition-all duration-300 ease-in-out">
-                            ĐỌC THÊM
-                        </Link>
-                    </div>
-
-                </div>
-            </div>
-
         </>
     );
 }

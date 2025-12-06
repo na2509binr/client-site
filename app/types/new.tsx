@@ -162,29 +162,6 @@ export const categoryNewsData: CategoryNew[] = [
 ];
 
 
-// export const newsSectionsData: NewsSection[] = [
-//   {
-//     id: 1,
-//     newsId: 1,
-//     title: "Giới thiệu",
-//     content: "Phần này nói về tổng quan nội dung bài viết.",
-//     order: 1,
-//   },
-//   {
-//     id: 2,
-//     newsId: 1,
-//     title: "Chi tiết",
-//     content: "Đây là phần mô tả chi tiết nội dung.",
-//     order: 2,
-//   },
-//   {
-//     id: 3,
-//     newsId: 2,
-//     title: "Bối cảnh",
-//     content: "Mô tả bối cảnh của sự kiện.",
-//     order: 1,
-//   }
-// ];
 
 
 

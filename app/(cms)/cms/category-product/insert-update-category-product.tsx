@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CategoryProduct } from "@/app/types/category-product";
-import { useImageUpload } from "@/app/utils/upload-image";
+// import { useImageUpload } from "@/app/utils/upload-image";
+import ImageUpload from "../component-shared/ImageUpload";
 
 type Props = {
   initialData?: Partial<CategoryProduct>;
@@ -77,67 +78,6 @@ export default function InsertUpdateCategoryForm({ initialData, fetchCategories 
   };
 
 
-  // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, field: "image") => {
-  //   if (!e.target.files || e.target.files.length === 0) return;
-  //   const file = e.target.files[0];
-
-  //   // preview cục bộ
-  //   const reader = new FileReader();
-  //   reader.onloadend = () => {
-  //     setFormData({ ...formData, [field]: reader.result as string });
-  //   };
-  //   reader.readAsDataURL(file);
-
-  // };
-
-// const handleFileChange = async (
-//   e: React.ChangeEvent<HTMLInputElement>, 
-//   field: "image", 
-//   folderName: string // tên thư mục truyền vào
-// ) => {
-//   if (!e.target.files || e.target.files.length === 0) return;
-//   const file = e.target.files[0];
-
-//   // 1. Preview cục bộ
-//   const reader = new FileReader();
-//   reader.onloadend = () => {
-//     setFormData({ ...formData, [field]: reader.result as string });
-//   };
-//   reader.readAsDataURL(file);
-
-//   // 2. Tạo đường dẫn dựa trên ngày hiện tại
-//   const now = new Date();
-//   const year = now.getFullYear();
-//   const month = String(now.getMonth() + 1).padStart(2, "0");
-//   const day = String(now.getDate()).padStart(2, "0");
-
-//   const filePath = `public/${folderName}/${year}/${month}/${day}/${file.name}`;
-
-//   // 3. Log ra console
-//   console.log("File path:", filePath);
-// };
-
-
-  // const { preview, uploadFile } = useImageUpload(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`);
-  // const [imagePath, setImagePath] = useState("");
-
-  // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (!e.target.files?.length) return;
-  //   const file = e.target.files[0];
-  //   const result = await uploadFile(file, "images");
-  //   if (result) setImagePath(result.filePath);
-  // };
-
-  const { preview, uploadFile } = useImageUpload("/api/upload");
-  const [imagePath, setImagePath] = useState("");
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files?.length) return;
-    const file = e.target.files[0];
-    const path = await uploadFile(file, "images");
-    if (path) setImagePath(path);
-  };
-
 
 
   return (
@@ -176,19 +116,45 @@ export default function InsertUpdateCategoryForm({ initialData, fetchCategories 
             />
           </div>
 
-          {/* <div>
-            <label>Ảnh</label>
-            <input type="file" accept="image/*" onChange={(e) => handleFileChange(e)} className="w-full border rounded px-3 py-2" />
-            {formData.image && <img src={formData.image} alt="Ảnh" className="mt-1 w-24 h-24 object-cover rounded " />}
+
+
+          {/* <div >
+            <label className="block mb-1 font-medium">Upload Ảnh</label>
+
+            <ImageUpload
+              folderName="category-product"
+              onUpload={(url) => setFormData({ ...formData, image: url })}
+            />
           </div> */}
 
-              <div className="space-y-2">
-      <label className="block font-medium">Upload ảnh</label>
-      <input type="file" accept="image/*" onChange={handleChange} className="border rounded px-3 py-2 w-full" />
-      {preview && <img src={preview} alt="Preview" className="w-32 h-32 object-cover rounded mt-2" />}
-      {imagePath && <p className="text-sm text-gray-500">Saved path: {imagePath}</p>}
-    </div>
 
+                      <div >
+                        <label className="block mb-1 font-medium">Ảnh</label>
+                        {/* <ImageUpload
+                          folderName="config-site"
+                          onUpload={(url) => setFormData({ ...formData, image: url })}
+                        />
+                        {formData.image && (
+                          <div className="bg-gray-200 p-2 flex justify-center items-center mt-2 rounded-md">
+                            <img
+                              src={formData.image}
+                              alt={formData.title ?? ""}
+                              width={300}
+                              height={300}
+                              className="object-cover"
+                            />
+                          </div>
+                        )} */}
+                        <ImageUpload
+    folderName="category-product"
+    value={formData.image}                         // <-- nhận giá trị từ form
+    onUpload={(url) => setFormData({
+        ...formData,
+        image: url                                 // <-- update form như input text
+    })}
+/>
+
+                      </div>
 
           <div className="col-span-3">
             <label className="block mb-1 font-medium">Mô tả</label>

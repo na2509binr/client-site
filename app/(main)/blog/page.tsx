@@ -1,12 +1,20 @@
+"use client"
+
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
 import NewsList from "./list-news";
-import { news } from "../../types/new";;
-
+import { useEffect, useState } from "react";
+// import { news } from "../../types/new";
+import { NewsAPI } from "@/app/utils/api";
 
 export default function BlogPage() {
+    const [news, setNews] = useState<any[]>([]);
+    useEffect(() => {
+        NewsAPI.getAll().then(setNews);
+    }, []);
+
 
     return (
         <div>

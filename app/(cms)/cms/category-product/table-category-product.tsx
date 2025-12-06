@@ -73,6 +73,7 @@
 
 import { CategoryProduct } from "@/app/types/category-product";
 import { useState } from "react";
+import Image from "next/image";
 
 type Props = {
   records: CategoryProduct[];
@@ -100,12 +101,12 @@ export default function TableCategory({ records, onSelect, onDelete, pageSize = 
         <table className="min-w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2">Chọn</th>
-              <th className="px-4 py-2 text-left">Ảnh</th>
-              <th className="px-4 py-2 text-left">Tiêu đề</th>
-              {/* <th className="px-4 py-2 text-left"> cha</th> */}
-              <th className="px-4 py-2 text-left">Mô tả</th>
-              <th className="px-4 py-2 text-left">Tình trạng</th>
+              <th className="px-4 py-2 text-center">Chọn</th>
+              <th className="px-4 py-2 text-center">Ảnh</th>
+              <th className="px-4 py-2 text-center">Tiêu đề</th>
+              {/* <th className="px-4 py-2 text-center"> cha</th> */}
+              <th className="px-4 py-2 text-center">Mô tả</th>
+              <th className="px-4 py-2 text-center">Tình trạng</th>
               <th className="px-4 py-2 text-center"></th>
             </tr>
           </thead>
@@ -122,7 +123,9 @@ export default function TableCategory({ records, onSelect, onDelete, pageSize = 
                     }}
                   />
                 </td>
-                <td className="px-4 py-2">{c.image}</td>
+                <td className="px-4 py-2 flex items-center justify-center">
+                  {<Image src={c.image ? c.image : '/placeholder.png'} alt={c.title} width={300} height={300} className="object-cover rounded" />}
+                </td>
                 <td className="px-4 py-2">{c.title}</td>
                 <td className="px-4 py-2">{c.desciption}</td>
                 <td className="px-4 py-2">{c.isActive ? "Hoạt động" : "Ẩn"}</td>

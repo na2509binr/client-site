@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { menuData } from "../../types/menu";
+// import { menuData } from "../../types/menu";
 import { usePathname } from "next/navigation";
+import { MenuAPI } from "@/app/utils/api";
 
 export default function HeaderMobile() {
     const pathname = usePathname();
@@ -12,7 +13,11 @@ export default function HeaderMobile() {
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [openMenuId, setOpenMenuId] = useState<number | null>(null);
-
+    const [menuData, setMenus] = useState<any[]>([]);
+    useEffect(() => {
+        MenuAPI.getTree().then(setMenus);
+    }, []);
+    
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
     const toggleMenuChild = (id: number) =>

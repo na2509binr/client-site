@@ -1,4 +1,8 @@
-import { categories, products } from "../types/product";
+import { CategoryProductAPI, ProductAPI } from "./api";
+
+
+const categories = await CategoryProductAPI.getAll();
+const products = await ProductAPI.getAll();
 
 
 export function toSlug(phrase: string): string {

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { BadgeAlert, Bean, ChartBarStacked, ChevronLeft, ChevronRight, Flag, Handshake, Home, Newspaper, Settings, User, Users } from "lucide-react";
+import { BadgeAlert, Bean, ChartBarStacked, ChevronLeft, ChevronRight, Flag, Handshake, Home, Newspaper, Settings, Store, User, Users } from "lucide-react";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(true);
@@ -56,6 +56,13 @@ export default function Sidebar() {
             <Flag size={20} />
             {open && <span>SEO</span>}
           </a> */}
+          {/* <a
+            href="/cms/product"
+            className="flex items-center gap-3 p-2 rounded hover:bg-gray-700 transition"
+          >
+            <Bean size={20} />
+            {open && <span>Menu</span>}
+          </a> */}
           <a
             href="/cms/product"
             className="flex items-center gap-3 p-2 rounded hover:bg-gray-700 transition"
@@ -67,9 +74,10 @@ export default function Sidebar() {
             href="/cms/category-product"
             className="flex items-center gap-3 p-2 rounded hover:bg-gray-700 transition"
           >
-            <ChartBarStacked  size={20} />
+            <ChartBarStacked size={20} />
             {open && <span>Thể loại sản phẩm</span>}
           </a>
+
           <a
             href="/cms/news"
             className="flex items-center gap-3 p-2 rounded hover:bg-gray-700 transition"
@@ -77,6 +85,27 @@ export default function Sidebar() {
             <Newspaper size={20} />
             {open && <span>Bài viết</span>}
           </a>
+          {/* <a
+            href="/cms/category-new"
+            className="flex items-center gap-3 p-2 rounded hover:bg-gray-700 transition"
+          >
+            <ChartBarStacked size={20} />
+            {open && <span>Thể loại bài viết</span>}
+          </a> */}
+          <a
+            href="/cms/store"
+            className="flex items-center gap-3 p-2 rounded hover:bg-gray-700 transition"
+          >
+            <Store size={20} />
+            {open && <span>Cửa hàng</span>}
+          </a>
+          {/* <a
+            href="/cms/banner"
+            className="flex items-center gap-3 p-2 rounded hover:bg-gray-700 transition"
+          >
+            <ChartBarStacked size={20} />
+            {open && <span>Kho ảnh Banner</span>}
+          </a> */}
 
           {/* <a
             href="/cms/member"
@@ -93,13 +122,13 @@ export default function Sidebar() {
             {open && <span>Đối tác</span>}
           </a>*/}
 
-          <a
+          {/* <a
             href="#"
             className="flex items-center gap-3 p-2 rounded hover:bg-gray-700 transition"
           >
             <Settings size={20} />
             {open && <span>Cài đặt</span>}
-          </a>
+          </a> */}
         </nav>
       </motion.aside>
     </div>

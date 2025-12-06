@@ -1,13 +1,14 @@
 "use client"
 
-import { New, news } from "@/app/types/new";
+import { New } from "@/app/types/new";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faCircle } from "@fortawesome/free-solid-svg-icons";
 import NewsSections from "./news-section";
 import NewsRelated from "./news-related";
-
+import { NewsAPI, NewsSectionAPI } from "@/app/utils/api";
+import { useEffect, useState } from "react";
 interface NewDetailProp {
     post: New;
 }
@@ -29,6 +30,19 @@ export default function NewDetail({ post }: NewDetailProp) {
         month: "2-digit",
         year: "numeric",
     });
+
+    const [news, setNews] = useState<any[]>([]);
+    useEffect(() => {
+        NewsAPI.getAll().then(setNews);
+    }, []);
+
+
+    console.log("Post ID:", post.id);
+    const [newsSections, setNewsSections] = useState<any[]>([]);
+    useEffect(() => {
+        NewsSectionAPI.getByNewsId(post.id).then((res) => setNewsSections(res as any[]));
+    }, [post.id]);
+
 
     const filterednews = news.filter(n => n.categoryNewsId === post.categoryNewsId).slice(0, 5);
 
@@ -125,7 +139,8 @@ export default function NewDetail({ post }: NewDetailProp) {
                                 </div>
                             )}
 
-                            <NewsSections sections={post.sections} />
+                            {/* <NewsSections sections={post.sections} /> */}
+                            <NewsSections sections={newsSections} />
                         </div>
 
 

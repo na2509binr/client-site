@@ -1,16 +1,23 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faLinkedinIn, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import Image from "next/image";
 import Link from "next/link";
 import StaticMap from "./map";
+import { useGlobalData } from "@/app/providers/GlobalDataProvider";
+import SocialLinks from "./social-links";
 
 // shadow-[0_-4px_10px_rgba(0,0,0,0.06)]
 export default function Footer() {
+
+    const { configSite } = useGlobalData();
+    
     return (
         <footer className="px-2 xl:grid xl:grid-cols-[1fr_8fr_1fr] 
         2xl:grid-cols-[1fr_4fr_1fr] bg-white py-5 lg:py-8 border-t border-[#eeeeee]" >
 
-            <div className="col-start-2 grid grid-cols-1 lg:grid-cols-[5fr_2fr_5fr] gap-y-5 items-center mb-8">
+            <div className="col-start-2 grid grid-cols-1 lg:grid-cols-[5fr_2fr_5fr] gap-5 items-center mb-8">
                 <div className="flex space-x-5">
                     <div className="bg-[#ff281c] px-2 py-3.5">
                         <Link href="/">
@@ -27,21 +34,27 @@ export default function Footer() {
 
                     <div className="flex flex-col justify-around text-[13px] text-[#666666] py-3">
                         <span>
-                            Số 39A phố Pháo Đài Láng, TT Phụ nữ TW, Phường Láng , Thành phố Hà Nội, Việt Nam
+                            {/* Số 39A phố Pháo Đài Láng, TT Phụ nữ TW, Phường Láng , Thành phố Hà Nội, Việt Nam */}
+                            {configSite?.place}
                         </span>
 
                         <span>
-                            <a href="tel:0333666073" className="underline hover:no-underline hover:text-[#ff281c]">+84 333 666 073</a>
+                            <a href={`tel:${configSite?.hotline}`} className="underline hover:no-underline hover:text-[#ff281c]">
+                                {/* +84 333 666 073 */}
+                                {configSite?.hotline}
+                            </a>
                         </span>
 
                         <span>
-                            <a href="#" className="underline hover:no-underline hover:text-[#ff281c]">email@example.com</a>
+                            <a href="/" className="underline hover:no-underline hover:text-[#ff281c]">
+                                {/* email@example.com */}
+                                {configSite?.email}
+                            </a>
                         </span>
                     </div>
-
                 </div>
 
-                <div className="hidden lg:flex justify-center items-center gap-x-2 text-[#dbdbdb] text-[20px] ">
+                {/* <div className="hidden lg:flex justify-center items-center gap-x-2 text-[#dbdbdb] text-[20px] ">
                     <a href="#">
                         <FontAwesomeIcon icon={faTwitter} className="hover:text-[#ff281c] transition-all duration-300 ease-in-out" />
                     </a>
@@ -51,7 +64,8 @@ export default function Footer() {
                     <a href="#">
                         <FontAwesomeIcon icon={faLinkedinIn} className="hover:text-[#ff281c] transition-all duration-300 ease-in-out" />
                     </a>
-                </div>
+                </div> */}
+                <SocialLinks configSite={configSite} className="flex justify-between items-center space-x-0.75 text-[#dbdbdb] text-[17px]"/>
 
                 <div>
                     <StaticMap />
@@ -99,7 +113,7 @@ export default function Footer() {
                             </li>
 
                             <li>
-                                <Link href="/agency"
+                                <Link href="/store"
                                     className="relative inline-block text-inherit transition-all duration-300 ease-in-out
                                     after:content-[''] after:block after:absolute after:bottom-0 after:right-0 after:h-0.5 after:bg-[#ff281c] after:-mb-1 after:w-full after:origin-right after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 hover:text-[#c2c2c2]" >
                                     Phân phối
@@ -107,7 +121,7 @@ export default function Footer() {
                             </li>
 
                             <li>
-                                <Link href="/new"
+                                <Link href="/blog"
                                     className="relative inline-block text-inherit transition-all duration-300 ease-in-out
                                     after:content-[''] after:block after:absolute after:bottom-0 after:right-0 after:h-0.5 after:bg-[#ff281c] after:-mb-1 after:w-full after:origin-right after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 hover:text-[#c2c2c2]" >
                                     Tin tức
@@ -124,7 +138,9 @@ export default function Footer() {
                         </ul>
 
                         <div className="flex flex-1 lg:hidden flex-col">
-                            <div className="flex justify-center items-center gap-x-2 text-[#dbdbdb] text-[20px] ">
+
+                            <SocialLinks configSite={configSite} className="flex justify-center items-center gap-x-2 text-[#dbdbdb] text-[20px]"/>
+                            {/* <div className="flex justify-center items-center gap-x-2 text-[#dbdbdb] text-[20px] ">
                                 <a href="#">
                                     <FontAwesomeIcon icon={faTwitter} className="hover:text-[#ff281c] transition-all duration-300 ease-in-out" />
                                 </a>
@@ -135,7 +151,7 @@ export default function Footer() {
                                     <FontAwesomeIcon icon={faLinkedinIn} className="hover:text-[#ff281c] transition-all duration-300 ease-in-out" />
                                 </a>
 
-                            </div>
+                            </div> */}
                                 <div className="flex justify-center">
                                     <Link href="/">
                                         <Image

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { News } from "@/app/types/news";
+import ImageUpload from "../component-shared/ImageUpload";
 
 type Props = {
     initialData?: Partial<News>;
@@ -116,10 +117,23 @@ export default function InsertUpdateNews({ initialData, fetchNews }: Props) {
                         />
                     </div>
 
-                    <div>
-                        <label>Ảnh</label>
-                        <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, "image")} className="w-full border rounded px-3 py-2" />
-                        {formData.image && <img src={formData.image} alt="Ảnh" className="mt-1 w-24 h-24 object-cover rounded " />}
+                    <div >
+                        <label className="block mb-1 font-medium">Ảnh</label>
+                        <ImageUpload
+                            folderName="config-site"
+                            onUpload={(url) => setFormData({ ...formData, image: url })}
+                        />
+                        {formData.image && (
+                            <div className="bg-gray-200 p-2 flex justify-center items-center mt-2 rounded-md">
+                                <img
+                                    src={formData.image}
+                                    alt={formData.title ?? ""}
+                                    width={300}
+                                    height={300}
+                                    className="object-cover"
+                                />
+                            </div>
+                        )}
                     </div>
                     <div>
                         <label className="block font-medium mb-1">Tình trạng</label>
@@ -133,7 +147,6 @@ export default function InsertUpdateNews({ initialData, fetchNews }: Props) {
                     </div>
 
                     <div className="col-span-3">
-
                         <div >
                             <label>Mô tả</label>
                             <textarea name="description" value={formData.description ?? ""} onChange={handleChange} className="w-full border rounded px-3 py-2" />
@@ -151,7 +164,7 @@ export default function InsertUpdateNews({ initialData, fetchNews }: Props) {
                                 : "bg-green-500 hover:bg-green-600"
                                 }`}
                         >
-                            {activeTab === "insert" ? "Insert" : "Update"}
+                            {activeTab === "insert" ? "Thêm mới" : "Cập nhật"}
                         </button>
                     </div>
                 </motion.form>

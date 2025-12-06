@@ -11,7 +11,7 @@ import HeaderMobile from "./(main)/components/header-mobile";
 import { Nunito } from 'next/font/google';
 
 const nunito = Nunito({
-    subsets: ["latin", "vietnamese"],
+  subsets: ["latin", "vietnamese"],
   // subsets: ['latin'],   // Chọn subset phù hợp, ví dụ latin hoặc vietnamese
   weight: ['200', '300', '400', '500', '600', '700', '800', '900'], // Chọn weight cần dùng
   display: 'swap',      // Tối ưu hiển thị text
@@ -19,7 +19,7 @@ const nunito = Nunito({
 import { Raleway } from 'next/font/google';
 
 const raleway = Raleway({
-    subsets: ["latin", "vietnamese"],
+  subsets: ["latin", "vietnamese"],
   // subsets: ['latin'],   // Chọn subset phù hợp, ví dụ latin hoặc vietnamese
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], // Chọn weight cần dùng
   display: 'swap',      // Tối ưu hiển thị text
@@ -27,6 +27,7 @@ const raleway = Raleway({
 
 
 import { Inter } from "next/font/google";
+import { GlobalDataProvider } from "./providers/GlobalDataProvider";
 
 const inter = Inter({
   subsets: ["latin", "vietnamese"],
@@ -84,7 +85,7 @@ export const metadata: Metadata = {
 
   // ✅ Favicons
   icons: {
-    icon: "/favicon.ico",
+    icon: "../public/Logo_LOGO MÀU CHUẨN.png",
     apple: "/apple-touch-icon.png"
   },
 
@@ -126,10 +127,12 @@ export default function RootLayout({
       </head> */}
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${nunito.className}`}
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased ${raleway.className}`}
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased ${inter.className}`}
-        > 
-        {children}
+      // className={`${geistSans.variable} ${geistMono.variable} antialiased ${raleway.className}`}
+      // className={`${geistSans.variable} ${geistMono.variable} antialiased ${inter.className}`}
+      >
+        <GlobalDataProvider>
+          {children}
+        </GlobalDataProvider>
       </body>
     </html>
   );

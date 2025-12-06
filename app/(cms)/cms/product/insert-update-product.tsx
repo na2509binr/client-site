@@ -216,6 +216,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Product } from "@/app/types/product";
+import ImageUpload from "../component-shared/ImageUpload";
+import MultiImageUpload from "../component-shared/MultiImageUpload";
 
 type Props = {
     initialData?: Partial<Product>;
@@ -255,14 +257,36 @@ export default function InsertUpdateProductForm({ initialData, fetchProducts }: 
         fetchCategories();
     }, [initialData]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const target = e.target as HTMLInputElement;
-        const { name, value, type, checked } = target;
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    //     const target = e.target as HTMLInputElement;
+    //     const { name, value, type, checked } = target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: type === "checkbox" ? checked : type === "number" ? Number(value) : value,
+    //     });
+    // };
+
+
+    // thay thế hàm hiện tại bằng hàm này
+    const handleChange = (
+        e: React.ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >
+    ) => {
+        const target = e.target;
+        const name = target.name;
+        const type = (target as HTMLInputElement).type;
+        let value: any = (target as HTMLInputElement).value;
+
+        if (type === "checkbox") value = (target as HTMLInputElement).checked;
+        if (type === "number") value = Number(value);
+
         setFormData({
             ...formData,
-            [name]: type === "checkbox" ? checked : type === "number" ? Number(value) : value,
+            [name]: value,
         });
     };
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -354,7 +378,7 @@ export default function InsertUpdateProductForm({ initialData, fetchProducts }: 
                             />
                         </div>
 
-                        <div>
+                        {/* <div>
                             <label className="block mb-1 font-medium">Ảnh</label>
                             <input
                                 name="image"
@@ -363,6 +387,52 @@ export default function InsertUpdateProductForm({ initialData, fetchProducts }: 
                                 className="w-full border rounded px-3 py-2"
                                 placeholder="Nhập URL ảnh"
                             />
+                        </div> */}
+                        {/* <div >
+                            <label className="block mb-1 font-medium">Ảnh</label>
+
+                            <ImageUpload
+                                folderName="product"
+                                onUpload={(url) => setFormData({ ...formData, image: url })}
+                            />
+                        </div> */}
+                        <div >
+                            <label className="block mb-1 font-medium">Ảnh</label>
+                            {/* <ImageUpload
+                                folderName="config-site"
+                                onUpload={(url) => setFormData({ ...formData, image: url })}
+                            /> */}
+                            {/* <MultiImageUpload
+                                folderName="product"
+                                onUpload={(stringUrls) => {
+                                    setFormData({ ...formData, image: stringUrls })
+                                }}
+                            /> */}
+
+                            <MultiImageUpload
+                                folderName="product"
+                                value={formData.image ?? ""}              // controlled
+                                onUpload={(urls) => setFormData({
+                                    ...formData,
+                                    image: urls                          // chuỗi "url1,url2,url3"
+                                })}
+                            />
+
+
+
+
+
+                            {/* {formData.image && (
+                                <div className="bg-gray-200 p-2 flex justify-center items-center mt-2 rounded-md">
+                                    <img
+                                        src={formData.image}
+                                        alt={formData.name ?? ""}
+                                        width={300}
+                                        height={300}
+                                        className="object-cover"
+                                    />
+                                </div>
+                            )} */}
                         </div>
                     </div>
 
@@ -372,14 +442,16 @@ export default function InsertUpdateProductForm({ initialData, fetchProducts }: 
                             <label className="block mb-1 font-medium">Danh mục</label>
 
                             <select
-                                name="cateId"
-                                value={formData.cateId ?? ""}
-                                onChange={(e) =>
-                                    setFormData({
-                                        ...formData,
-                                        cateId: Number(e.target.value),
-                                    })
-                                }
+                                name="categoryProductId"
+                                value={formData.categoryProductId ?? ""}
+                                // onChange={(e) =>
+                                //     setFormData({
+                                //         ...formData,
+                                //         cateId: Number(e.target.value),
+                                //     })
+                                // }
+
+                                onChange={handleChange}
                                 className="w-full border rounded px-3 py-2 bg-white"
                             >
                                 <option value="">-- Chọn danh mục --</option>

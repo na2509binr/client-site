@@ -7,6 +7,7 @@ export type News = {
     url?: string; // NotMapped bên .NET → FE nhận nhưng không gửi
     view: number;
     image: string;
+    categoryNewId: number;
     author: string;
     active: boolean;
     order: number;

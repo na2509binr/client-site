@@ -17,7 +17,14 @@ export default function AboutSubComponent() {
                     <div className="col-start-2 grid grid-cols-1 lg:grid-cols-2">
                         <div className="flex flex-col items-start justify-center">
 
-                            <h1 className="text-[40px] font-bold mb-5">GIỚI THIỆU SƠ LƯỢC <span className="font-light">CÔNG TY</span></h1>
+                        <div className="flex justify-start">
+                            <h2 className="text-[40px] font-semibold mb-5 inline-block relative ">
+                                <span className="relative z-10">CÂU CHUYỆN THƯƠNG HIỆU</span>
+                                <span className="absolute left-0 -bottom-1 h-1 bg-red-600 w-1/2"></span>
+                            </h2>
+                        </div>
+                            {/* <h1 className="text-[40px] font-bold mb-5">CÂU CHUYỆN THƯƠNG HIỆU</h1> */}
+                            {/* <h1 className="text-[40px] font-bold mb-5">GIỚI THIỆU SƠ LƯỢC <span className="font-light">CÔNG TY</span></h1> */}
                             <p className="text-[14px]">
                                 What is Lorem Ipsum?
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -46,7 +53,7 @@ export default function AboutSubComponent() {
 
                 </div>
 
-                {!isHome ?
+                {/* {!isHome ?
                     <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] py-10 lg:py-25 bg-[#f5deb3]/30">
                         <div className="col-start-2 flex flex-col lg:flex-row items-center justify-between gap-8">
                             <div className="flex justify-between items-center gap-x-8">
@@ -109,7 +116,7 @@ export default function AboutSubComponent() {
 
                     </div>
                     : <div></div>
-                }
+                } */}
             </div>
         </>
     );

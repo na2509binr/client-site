@@ -1,100 +1,67 @@
-// import { Product } from "@/app/types/product";
-// import { useState } from "react";
-
-// type Props = {
-//   records: Product[];
-//   onSelect: (record: Product) => void;
-//   onDelete: (id: number) => void;
-// };
-
-// export default function TableProduct({ records, onSelect, onDelete }: Props) {
-//   const [selectedId, setSelectedId] = useState<number | null>(null);
-
-//   return (
-//     <div className="overflow-x-auto border rounded shadow">
-//       <table className="min-w-full">
-//         <thead className="bg-gray-50">
-//           <tr>
-//             <th className="px-4 py-2 text-left">Select</th>
-//             <th className="px-4 py-2 text-left">Tên</th>
-//             <th className="px-4 py-2 text-left">Giá</th>
-//             <th className="px-4 py-2 text-left">Giá khuyến mãi</th>
-//             <th className="px-4 py-2 text-center">Actions</th>
-//           </tr>
-//         </thead>
-//         <tbody className="divide-y">
-//           {records.map((p) => (
-//             <tr key={p.id} className="hover:bg-gray-100">
-//               <td className="px-4 py-2">
-//                 <input
-//                   type="radio"
-//                   checked={selectedId === p.id}
-//                   onChange={() => {
-//                     setSelectedId(p.id);
-//                     onSelect(p);
-//                   }}
-//                 />
-//               </td>
-//               <td className="px-4 py-2">{p.name}</td>
-//               <td className="px-4 py-2">{p.price.toLocaleString()}₫</td>
-//               <td className="px-4 py-2">{p.salePrice.toLocaleString()}₫</td>
-//               <td className="px-4 py-2 text-center">
-//                 <button
-//                   onClick={() => onDelete(p.id)}
-//                   className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-//                 >
-//                   Xóa
-//                 </button>
-//               </td>
-//             </tr>
-//           ))}
-
-//           {records.length === 0 && (
-//             <tr>
-//               <td colSpan={5} className="text-center py-4 text-gray-500">
-//                 Không có sản phẩm nào
-//               </td>
-//             </tr>
-//           )}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// }
-
-
+"use client";
 
 import { Product } from "@/app/types/product";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { CategoryProductAPI } from "@/app/utils/api";
 
 type Props = {
   records: Product[];
   onSelect: (record: Product) => void;
   onDelete: (id: number) => void;
-  pageSize?: number; // số sản phẩm mỗi trang, mặc định 5
+  pageSize?: number;
 };
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);
-  const day = String(d.getDate()).padStart(2, "0");
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const year = d.getFullYear();
-  return `${day}/${month}/${year}`;
+  return `${String(d.getDate()).padStart(2, "0")}/${String(
+    d.getMonth() + 1
+  ).padStart(2, "0")}/${d.getFullYear()}`;
+}
+
+export function parseImageString(str: string): string[] {
+  if (!str) return [];
+  return str
+    .split(",")
+    .map(s => s.trim())
+    .filter(s => s !== "");
 }
 
 
-export default function TableProduct({ records, onSelect, onDelete, pageSize = 10 }: Props) {
+export default function TableProduct({
+  records,
+  onSelect,
+  onDelete,
+  pageSize = 10,
+}: Props) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [categoryMap, setCategoryMap] = useState<Record<number, string>>({});
+
+  // 🔥 Fetch ALL category 1 lần → build map id -> title
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const categories = await CategoryProductAPI.getAll();
+      const map: Record<number, string> = {};
+
+      categories.forEach((c: any) => {
+        map[c.id] = c.title;
+      });
+
+      setCategoryMap(map);
+    };
+
+    fetchCategories();
+  }, []);
+
+
 
   const totalPages = Math.ceil(records.length / pageSize);
   const startIdx = (currentPage - 1) * pageSize;
   const currentRecords = records.slice(startIdx, startIdx + pageSize);
 
-  const goToPage = (page: number) => {
-    if (page < 1 || page > totalPages) return;
-    setCurrentPage(page);
-  };
+
 
   return (
     <div>
@@ -102,21 +69,22 @@ export default function TableProduct({ records, onSelect, onDelete, pageSize = 1
         <table className="min-w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left">Select</th>
-              <th className="px-4 py-2 text-left">Ảnh</th>
-              <th className="px-4 py-2 text-left">Tên</th>
-              <th className="px-4 py-2 text-left">Giá</th>
-              <th className="px-4 py-2 text-left">Giá khuyến mãi</th>
-              <th className="px-4 py-2 text-left">Thể loại</th>
-              <th className="px-4 py-2 text-left">Mô tả</th>
-              {/* <th className="px-4 py-2 text-left">Nội dung</th> */}
-              <th className="px-4 py-2 text-left">Trạng thái</th>
-              <th className="px-4 py-2 text-left">Ngày tạo</th>
+              <th className="px-4 py-2 text-center">Chọn</th>
+              <th className="px-4 py-2 text-center">Ảnh</th>
+              <th className="px-4 py-2 text-center">Tên</th>
+              <th className="px-4 py-2 text-center">Giá</th>
+              <th className="px-4 py-2 text-center">Giá khuyến mãi</th>
+              <th className="px-4 py-2 text-center">Thể loại</th>
+              <th className="px-4 py-2 text-center">Mô tả</th>
+              <th className="px-4 py-2 text-center">Trạng thái</th>
+              <th className="px-4 py-2 text-center">Ngày tạo</th>
               <th className="px-4 py-2 text-center">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y">
-            {currentRecords.map((p) => (
+            {/* {currentRecords.map((p) => (
+
+              
               <tr key={p.id} className="hover:bg-gray-100">
                 <td className="px-4 py-2">
                   <input
@@ -128,16 +96,29 @@ export default function TableProduct({ records, onSelect, onDelete, pageSize = 1
                     }}
                   />
                 </td>
-                <td className="px-4 py-2">{p.image.toLocaleString()}</td>
+
+                <td className="px-4 py-2 flex items-center justify-center">
+                  <Image
+                    src={p.image || "/placeholder.png"}
+                    alt={p.name}
+                    width={300}
+                    height={300}
+                    className="object-cover rounded"
+                  />
+                </td>
+
                 <td className="px-4 py-2">{p.name}</td>
                 <td className="px-4 py-2">{p.price.toLocaleString()}₫</td>
                 <td className="px-4 py-2">{p.salePrice.toLocaleString()}₫</td>
-                <td className="px-4 py-2">{p.cateId}</td>
+
+                <td className="px-4 py-2">
+                  {categoryMap[p.categoryProductId] || "—"}
+                </td>
+
                 <td className="px-4 py-2">{p.description}</td>
-                {/* <td className="px-4 py-2">{p.content}</td> */}
-                {/* <td className="px-4 py-2">{p.isActive}</td> */}
-                <td className="px-4 py-2 text-center">{p.isActive ? "Hoạt động" : "Ẩn"}</td>
+                <td className="px-4 py-2">{p.isActive ? "Hoạt động" : "Ẩn"}</td>
                 <td className="px-4 py-2">{formatDate(p.createDate)}</td>
+
                 <td className="px-4 py-2 text-center">
                   <button
                     onClick={() => onDelete(p.id)}
@@ -147,11 +128,66 @@ export default function TableProduct({ records, onSelect, onDelete, pageSize = 1
                   </button>
                 </td>
               </tr>
-            ))}
+            ))} */}
+
+
+
+            {currentRecords.map((p) => {
+              const images = parseImageString(p.image); // biến string → array
+              const firstImage = images[0] || "/placeholder.png";
+
+              return (
+                <tr key={p.id} className="hover:bg-gray-100">
+                  <td className="px-4 py-2">
+                    <input
+                      type="radio"
+                      checked={selectedId === p.id}
+                      onChange={() => {
+                        setSelectedId(p.id);
+                        onSelect(p);
+                      }}
+                    />
+                  </td>
+
+                  <td className="px-4 py-2 flex items-center justify-center">
+                    <Image
+                      src={firstImage}
+                      alt={p.name}
+                      width={300}
+                      height={300}
+                      className="object-cover rounded"
+                    />
+                  </td>
+
+                  <td className="px-4 py-2">{p.name}</td>
+                  <td className="px-4 py-2">{p.price.toLocaleString()}₫</td>
+                  <td className="px-4 py-2">{p.salePrice.toLocaleString()}₫</td>
+
+                  <td className="px-4 py-2">{categoryMap[p.categoryProductId] || "—"}</td>
+
+                  <td className="px-4 py-2">{p.description}</td>
+                  <td className="px-4 py-2">{p.isActive ? "Hoạt động" : "Ẩn"}</td>
+                  <td className="px-4 py-2">{formatDate(p.createDate)}</td>
+
+                  <td className="px-4 py-2 text-center">
+                    <button
+                      onClick={() => onDelete(p.id)}
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    >
+                      Xóa
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+
+
+
+
 
             {currentRecords.length === 0 && (
               <tr>
-                <td colSpan={5} className="text-center py-4 text-gray-500">
+                <td colSpan={10} className="text-center py-4 text-gray-500">
                   Không có sản phẩm nào
                 </td>
               </tr>
@@ -164,23 +200,29 @@ export default function TableProduct({ records, onSelect, onDelete, pageSize = 1
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-2 mt-4">
           <button
-            onClick={() => goToPage(currentPage - 1)}
+            onClick={() => setCurrentPage((p) => p - 1)}
             disabled={currentPage === 1}
             className="px-3 py-1 border rounded disabled:opacity-50"
           >
             Prev
           </button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <button
-              key={page}
-              onClick={() => goToPage(page)}
-              className={`px-3 py-1 border rounded ${page === currentPage ? 'bg-gray-200 font-bold' : ''}`}
-            >
-              {page}
-            </button>
-          ))}
+
+          {Array.from({ length: totalPages }).map((_, idx) => {
+            const page = idx + 1;
+            return (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`px-3 py-1 border rounded ${page === currentPage ? "bg-gray-200 font-bold" : ""
+                  }`}
+              >
+                {page}
+              </button>
+            );
+          })}
+
           <button
-            onClick={() => goToPage(currentPage + 1)}
+            onClick={() => setCurrentPage((p) => p + 1)}
             disabled={currentPage === totalPages}
             className="px-3 py-1 border rounded disabled:opacity-50"
           >

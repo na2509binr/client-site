@@ -1,16 +1,27 @@
 "use client"
 
 import "../globals.css";
-import { products } from "../types/product";
-import { news } from "../types/new";
+// import { products } from "../types/product";
+// import { news } from "../types/new";
 import Banner from "./components/banner";
 import Link from "next/link";
 import Image from "next/image";
 import AboutSubComponent from "./about/about-component";
 import SwiperProduct from "./components/swiper-product";
 import SwiperNews from "./components/swiper-news";
+import { useEffect, useState } from "react";
+import { NewsAPI, ProductAPI } from "@/app/utils/api";
 
 export default function Home() {
+    const [products, setProducts] = useState<any[]>([]);
+    const [news, setNews] = useState<any[]>([]);
+    useEffect(() => {
+        ProductAPI.getAll().then(setProducts);
+    }, []);
+    useEffect(() => {
+        NewsAPI.getAll().then(setNews);
+    }, []);
+
   return (
     <main>
       <Banner />

@@ -91,7 +91,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuItem from "@/app/(main)/components/menu-desktop-item";
-import { menuData } from "@/app/types/menu";
+// import { menuData } from "@/app/types/menu";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons/faFacebookF";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons/faLinkedinIn";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons/faTwitter";
@@ -100,6 +100,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { MenuAPI } from "@/app/utils/api";
 
 export default function ExportHeader() {
     const pathname = usePathname();
@@ -107,6 +108,14 @@ export default function ExportHeader() {
 
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+
+
+
+
+    const [menuData, setMenus] = useState<any[]>([]);
+    useEffect(() => {
+        MenuAPI.getTree().then(setMenus);
+    }, []);
 
     // Detect scroll direction
     useEffect(() => {

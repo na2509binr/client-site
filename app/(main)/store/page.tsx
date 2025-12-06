@@ -1,18 +1,26 @@
 "use client"
 
-import { stores, Store } from "@/app/types/store";
+// import { stores, Store } from "@/app/types/store";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "../components/dropdownlist";
 import CityWardDropdown from "../components/dropdownlist";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StoreList from "./list-store";
+import { StoreAPI } from "@/app/utils/api";
 
 
 
 export default function StoresPage() {
+    const [stores, setStores] = useState<any[]>([]);
+
+    useEffect(() => {
+        StoreAPI.getAll().then(setStores);
+    }, []);
+
+
     const wardsByCity = stores.reduce((acc: Record<string, string[]>, store) => {
         if (!acc[store.city]) {
             acc[store.city] = [];
