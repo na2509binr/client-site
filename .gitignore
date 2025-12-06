@@ -31,7 +31,10 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
+# Ignore tất cả file .env
 .env*
+# Nhưng KHÔNG ignore file này
+!.env.production
 
 # vercel
 .vercel
