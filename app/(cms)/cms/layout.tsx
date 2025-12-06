@@ -1,5 +1,4 @@
 // import Footer from "./component-shared.tsx/footer";
-import Header from "./component-shared/header";
 import Sidebar from "./component-shared/sidebar";
 import Topbar from "./component-shared/topbar";
 

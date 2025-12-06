@@ -69,7 +69,7 @@ import { useEffect, useState } from "react";
 // Dynamic import CKEditor + ClassicEditor, SSR=false
 const CKEditor = dynamic(async () => {
   const { CKEditor } = await import("@ckeditor/ckeditor5-react");
-  const ClassicEditor = (await import("@ckeditor/ckeditor5-build-classic")).default;
+  const ClassicEditor = (await import("@ckeditor/ckeditor5-editor-classic")).ClassicEditor;
 
   return (props: any) => <CKEditor editor={ClassicEditor} {...props} />;
 }, { ssr: false });

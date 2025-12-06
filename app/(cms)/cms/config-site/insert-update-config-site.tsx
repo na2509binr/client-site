@@ -160,11 +160,18 @@ import { JSX, useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedin, FaYoutube, FaPinterest } from "react-icons/fa";
 import { SiTiktok, SiX, SiZalo } from "react-icons/si";
 import { ConfigSite } from "@/app/types/config-stie";
-import Image from "next/image";
 import ImageUpload from "../component-shared/ImageUpload";
+import React from "react";
 
 
-export default function UpdateConfigSiteForm() {
+type InsertUpdateConfigSiteFormProps = {
+  initialData: Partial<ConfigSite>;
+  fetchConfigSites: () => Promise<void>;
+};
+
+export default function InsertUpdateConfigSiteForm({ initialData, fetchConfigSites }: InsertUpdateConfigSiteFormProps) {
+
+// export default function UpdateConfigSiteForm() {
   const [formData, setFormData] = useState<Partial<ConfigSite>>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
