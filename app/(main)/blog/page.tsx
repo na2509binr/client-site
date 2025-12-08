@@ -1,5 +1,6 @@
 "use client"
 
+export const dynamic = "force-dynamic";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -53,6 +54,7 @@ export default function BlogPage() {
             <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr] py-16 bg-[#f5deb3]/30">
                 <div className="col-start-2">
                     <NewsList data={news} />
+                    {/* <NewsList/> */}
                 </div>
             </div>
 

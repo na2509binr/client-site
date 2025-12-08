@@ -1,15 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { New } from "../../types/new";
 import ItemCardNew from "./item-card-new";
 // import ItemCardNew, { NewsItem } from "./ItemCard";
-
+import { NewsAPI } from "@/app/utils/api";
 type Props = {
   data: New[];
 };
 
+// export default function NewsList() {
 export default function NewsList({ data }: Props) {
+
+
+  // const [data, setNews] = useState<any[]>([]);
+  // useEffect(() => {
+  //   NewsAPI.getAll().then(setNews);
+  // }, []);
+
+
   const itemsPerPage = 6;
   const [page, setPage] = useState(1);
 
@@ -41,9 +50,8 @@ export default function NewsList({ data }: Props) {
           <button
             key={i}
             onClick={() => setPage(i + 1)}
-            className={`px-4 py-2 border rounded cursor-pointer ${
-              page === i + 1 ? "bg-[#ff281c] text-white" : ""
-            }`}
+            className={`px-4 py-2 border rounded cursor-pointer ${page === i + 1 ? "bg-[#ff281c] text-white" : ""
+              }`}
           >
             {i + 1}
           </button>

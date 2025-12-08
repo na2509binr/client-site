@@ -13,7 +13,8 @@ async function request<T>(
 
 
     const res = await fetch(`${API_URL}${endpoint}`, {
-      cache: "no-store",
+      // next: { revalidate: 60 },
+      // cache: "no-store",
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -25,12 +26,13 @@ async function request<T>(
     if (!res.ok) {
       throw new Error(`API error: ${res.status} - ${res.statusText}`);
     }
-console.log("Status:", res.status);
-console.log("Headers:", Object.fromEntries(res.headers.entries()));
+    console.log("Status:", res.status);
+    console.log("Headers:", Object.fromEntries(res.headers.entries()));
 
-const text = await res.text();
-console.log("Body:", text);
-    return res.json();
+    const text = await res.text();
+    // console.log("Body:", text);
+    // return res.json();
+    return JSON.parse(text);
   } catch (err) {
     console.log("API_URL:" + API_URL);
     console.log("Endpoint:" + endpoint);
@@ -113,7 +115,7 @@ export const NewsAPI = {
 
   GetNewsByCategoryNewId: (categoryNewId: string) =>
     request<any[]>(`/api/new/get-news-by-category-new-id?categoryNewUrl=${categoryNewId}`),
-  
+
   getById: (id: number) =>
     request(`/api/new/get-by-id/${id}`),
 
