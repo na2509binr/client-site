@@ -271,7 +271,7 @@ const ContactSectionEnhanced: React.FC<ContactSectionProps> = ({
                                         {data.headquarters.title}
                                     </h3>
                                     <p className="text-[15px] text-gray-600 leading-relaxed">
-                                        {configSite.place}
+                                        {configSite?.place ?? "Chưa cập nhật"}
                                     </p>
                                 </div>
                             </div>
@@ -305,13 +305,13 @@ const ContactSectionEnhanced: React.FC<ContactSectionProps> = ({
                                             href={`tel:${data.contact.phone.replace(/\s/g, "")}`}
                                             className="block text-[15px] text-gray-600 hover:text-[#006838] transition-colors duration-200"
                                         >
-                                            {configSite.hotline}
+                                            {configSite?.hotline ?? "Chưa cập nhật"}
                                         </a>
                                         <a
                                             href={`mailto:${data.contact.email}`}
                                             className="block text-[15px] text-gray-600 hover:text-[#006838] transition-colors duration-200"
                                         >
-                                            {configSite.email}
+                                            {configSite?.email ?? "Chưa cập nhật"}
                                         </a>
                                     </div>
                                 </div>
