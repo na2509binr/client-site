@@ -121,7 +121,7 @@ export default function ProductDetailClientPage() {
   if (loading) return <p>Đang tải...</p>;
   if (!product) return <h1>Product not found</h1>;
 
-  const filteredProducts = products.filter((p: any) => p.cateId === product.cateId);
+  const filteredProducts = products.filter((p: any) => p.cateId === product.cateId && p.isActive === true);
 
   // const images = [
   //   "/images/product-1.webp",

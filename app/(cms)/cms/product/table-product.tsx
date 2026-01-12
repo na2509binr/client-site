@@ -166,7 +166,7 @@ export default function TableProduct({
                   <td className="px-4 py-2">{categoryMap[p.categoryProductId] || "—"}</td>
 
                   <td className="px-4 py-2">{p.description}</td>
-                  <td className="px-4 py-2">{p.isActive ? "Hoạt động" : "Ẩn"}</td>
+                  <td className="px-4 py-2">{p.isActive ? "Ẩn" : "Hoạt động"}</td>
                   <td className="px-4 py-2">{formatDate(p.createDate)}</td>
 
                   <td className="px-4 py-2 text-center">

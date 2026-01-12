@@ -56,7 +56,7 @@ export default function HeaderMobile() {
     return (
         <div className={`bg-white shadow-xl   px-2 md:px-3 lg:px-4 xl:grid xl:grid-cols-[1fr_7fr_1fr] mb-2`}>
             {/* Logo + Hamburger */}
-            <div className="col-start-2 grid grid-cols-2 lg:grid-cols-[1fr_3fr_1fr] items-center">
+            <div className="col-start-2 grid grid-cols-2 xl:grid-cols-[1fr_3fr_1fr] items-center">
 
                 {/* Logo */}
                 <div className="flex justify-start items-center">
@@ -75,7 +75,7 @@ export default function HeaderMobile() {
                 </div>
 
                 {/* Hamburger */}
-                <div className="flex justify-end lg:hidden">
+                <div className="flex justify-end xl:hidden">
                     <button
                         onClick={toggleMenu}
                         className="flex flex-col justify-center items-center w-10 h-10 
@@ -90,7 +90,7 @@ export default function HeaderMobile() {
 
             {/* Mobile Accordion Menu */}
             <div
-                className={`w-full overflow-hidden transition-all duration-300 ease-in-out lg:hidden ${getAccordionClass()}`}
+                className={`w-full overflow-hidden transition-all duration-300 ease-in-out xl:hidden ${getAccordionClass()}`}
             >
                 <ul className="mb-2 text-[#01387F] font-normal select-none py-3.5">
                     {menuData.map((menu) => {

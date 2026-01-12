@@ -233,6 +233,7 @@ export default function CategoryPage() {
     const [cateId, setCateId] = useState<number>(-1);   // ⭐ mặc định load tất cả
     const [loading, setLoading] = useState(true);
 
+    const filteredCategories = categories.filter((p: any) => p.isActive === true);
     // Load categories 1 lần
     useEffect(() => {
         CategoryProductAPI.getAll().then((data) => {
@@ -297,7 +298,7 @@ export default function CategoryPage() {
                                 </span>
                             </li>
 
-                            {categories.map((cate) => (
+                            {filteredCategories.map((cate) => (
                                 <li key={cate.id} className="flex items-center gap-1">
                                     <ChevronRight />
                                     <span

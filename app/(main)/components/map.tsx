@@ -16,7 +16,8 @@ export default function MapEmbed({ height = "200px" }: MapProp) {
   }
 
   return (
-    <div className={`w-full h-[${height}] rounded-xl overflow-hidden shadow`}>
+    // <div className={`w-full h-[374px] rounded-xl overflow-hidden shadow`}>
+    <div className={`w-full h-[${height}] rounded-xl overflow-hidden shadow`}> 
       <iframe
         src={configSite?.googleMap}
         className={`w-full h-full ${colorMap}`}

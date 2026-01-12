@@ -82,6 +82,8 @@ export const CategoryProductAPI = {
 export const ProductAPI = {
   getAll: () => request<any[]>("/api/product/get-all"),
 
+  getProductNew: () => request<any[]>("/api/product/get-product-new"),
+
   getFiltByCateId: (cateId: number) =>
     request(`/api/product/get-filt-by-cate-id?cateId=${cateId}`),
 
