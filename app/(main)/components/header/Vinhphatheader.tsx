@@ -117,27 +117,27 @@ const VinhPhatHeader: React.FC<HeaderProps> = ({
                   (child.url && pathname.startsWith(child.url + "/"));
                 
                   return (
-                      <li key={child.id}>
-                          <Link
-                              href={child.url || "#"}
-                              className={`
+                  <li key={child.id}>
+                    <Link
+                      href={child.url || "#"}
+                      className={`
                         block px-5 py-3.5 text-[13px] font-black uppercase
                         transition-all duration-150 tracking-wide
                         border-b border-gray-100 last:border-b-0
                         ${isChildActive
-                                      ? "bg-[#006838] text-white"
-                                      : "text-gray-700 hover:bg-[#006838] hover:text-white hover:pl-7"
-                                  }
+                          ? "bg-[#006838] text-white"
+                          : "text-gray-700 hover:bg-[#006838] hover:text-white hover:pl-7"
+                        }
                       `}
-                          >
-                              {child.title}
-                          </Link>
-                      </li>
-                  );
+                    >
+                      {child.title}
+                    </Link>
+                  </li>
+                );
               })}
-                      </ul>
-                  </div>
-              )}
+            </ul>
+          </div>
+        )}
       </li>
     );
   };

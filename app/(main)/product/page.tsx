@@ -285,7 +285,6 @@ export default function CategoryPage() {
             {/* Content */}
             <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
                 <div className="col-start-2 grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-10 my-10 lg:my-30">
-
                     {/* Sidebar */}
                     <div className="row-start-2 lg:col-start-1 lg:row-start-1">
                         <ul className="list-inside space-y-6 text-[#333333] my-6 mb-15">

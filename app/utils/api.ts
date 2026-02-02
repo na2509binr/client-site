@@ -26,8 +26,8 @@ async function request<T>(
     if (!res.ok) {
       throw new Error(`API error: ${res.status} - ${res.statusText}`);
     }
-    console.log("Status:", res.status);
-    console.log("Headers:", Object.fromEntries(res.headers.entries()));
+    // console.log("Status:", res.status);
+    // console.log("Headers:", Object.fromEntries(res.headers.entries()));
 
     const text = await res.text();
     // console.log("Body:", text);

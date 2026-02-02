@@ -75,7 +75,7 @@ export default function TableProduct({
               <th className="px-4 py-2 text-center">Giá</th>
               <th className="px-4 py-2 text-center">Giá khuyến mãi</th>
               <th className="px-4 py-2 text-center">Thể loại</th>
-              <th className="px-4 py-2 text-center">Mô tả</th>
+              {/* <th className="px-4 py-2 text-center">Mô tả</th> */}
               <th className="px-4 py-2 text-center">Trạng thái</th>
               <th className="px-4 py-2 text-center">Ngày tạo</th>
               <th className="px-4 py-2 text-center">Actions</th>
@@ -165,7 +165,7 @@ export default function TableProduct({
 
                   <td className="px-4 py-2">{categoryMap[p.categoryProductId] || "—"}</td>
 
-                  <td className="px-4 py-2">{p.description}</td>
+                  {/* <td className="px-4 py-2">{p.description}</td> */}
                   <td className="px-4 py-2">{p.isActive ? "Ẩn" : "Hoạt động"}</td>
                   <td className="px-4 py-2">{formatDate(p.createDate)}</td>
 

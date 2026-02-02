@@ -1,80 +1,10 @@
-
-
-// // import { products } from "@/app/types/product";
-// import { categoriesWithSlug, productsWithSlug, toSlug } from "@/app/utils/slug";
-// // import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-// // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// // import Image from "next/image"
-// // import Link from "next/link";
-// // import { useState } from "react";
-// import ProductDetailClient from "./product-detail";
-// import SwiperProduct from "@/app/(main)/components/swiper-product";
-
-// export default async function ProductDetail({ params }: { params: Promise<{ category: string, slug: string }> }) {
-//   const { category, slug } = await params;
-
-//   const products = await fetch(`${process.env.API_URL}/api/product/get-all`, {
-//     next: { revalidate: 60 }, // cache nhẹ
-//   }).then(res => res.json());
-
-//   // kiểm tra category
-//   // const cate = categoriesWithSlug.find(c => c.slug === category);
-//   // if (!cate) return <h1>Category not found</h1>;
-// const cate = await fetch(`${process.env.API_URL}/api/category-product/get-all`, {
-//     next: { revalidate: 60 }, // cache nhẹ
-//   }).then(res => res.json() );
-
-
-//   // tìm sản phẩm theo slug
-//   const product = products.find((p: { url: string; }) => p.url?.endsWith(slug));
-//   console.log(product);
-//   if (!product) return <h1>Product not found</h1>;
-
-//   const filteredProducts = products.filter((p: { cateId: any; }) => p.cateId === product.cateId);
-
-//   const images = [
-//     "/images/product-1.webp",
-//     "/images/product-2.webp",
-//     "/images/product-3.webp",
-//     "/images/product-4.webp",
-//     "/images/product-5.webp",
-//   ];
-
-//   // const [activeImage, setActiveImage] = useState(images[0]);
-
-
-//   return (
-//     <>
-//       <ProductDetailClient
-//         product={product}
-//         category={cate}
-//         images={images}
-//       />
-
-//       <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
-//         <div className="col-start-2  border-t border-[#eeeeee]">
-//           <h2 className="text-[30px] my-10">Sản phẩm liên quan</h2>
-
-//           <div className="w-full max-w-6xl 2xl:max-w-7xl">
-//             <SwiperProduct products={filteredProducts} />
-//           </div>
-
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
-
-
-
-
 "use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import ProductDetailClient from "./product-detail";
 import SwiperProduct from "@/app/(main)/components/swiper-product";
+import { Product } from "@/app/types/product";
 
 export function parseImageString(str: string): string[] {
   if (!str) return [];
@@ -91,7 +21,8 @@ export default function ProductDetailClientPage() {
     slug: string;
   };
 
-  const [products, setProducts] = useState<any[]>([]);
+
+  const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -121,24 +52,20 @@ export default function ProductDetailClientPage() {
   if (loading) return <p>Đang tải...</p>;
   if (!product) return <h1>Product not found</h1>;
 
-  const filteredProducts = products.filter((p: any) => p.cateId === product.cateId && p.isActive === true);
+  const filteredProducts = products.filter((p: any) => p.categoryProductId == product.categoryProductId && p.isActive == true);
 
-  // const images = [
-  //   "/images/product-1.webp",
-  //   "/images/product-2.webp",
-  //   "/images/product-3.webp",
-  //   "/images/product-4.webp",
-  //   "/images/product-5.webp",
-  // ];
   const images = parseImageString(product.image);
-
+  console.log("Parsed images:", slug);
+  console.log("Parsed images:", products);
+  console.log("Parsed images:", product);
+  console.log("Parsed images:", filteredProducts);
 
   return (
     <>
       {/* <ProductDetailClient product={product} category={categories} images={images} /> */}
       <ProductDetailClient product={product} category={categories} images={images} />
 
-      <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
+      {/* <div className="px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_4fr_1fr]">
         <div className="col-start-2 border-t border-[#eeeeee]">
           <h2 className="text-[30px] my-10">Sản phẩm liên quan</h2>
 
@@ -146,7 +73,7 @@ export default function ProductDetailClientPage() {
             <SwiperProduct products={filteredProducts} />
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

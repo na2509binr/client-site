@@ -40,7 +40,7 @@ export default function ProductDetailClient({
 
                         {/* <p classNamse="my-6 text-[13px] lg:text-[16px]">{product.description}</p> */}
 
-             
+
                         <div className="text-[13px] font-semibold flex items-center space-x-0.75">
                             <Link href="/" className="text-[#b3e53f]">
                                 Trang chủ
@@ -71,6 +71,7 @@ export default function ProductDetailClient({
                 <div className="col-start-2 ">
                     <div className="container mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
 
+
                         {/* ✅ LEFT: Thumbnail List */}
                         <div className="row-start-2 lg:row-start-1 lg:col-start-1  lg:col-span-2 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible">
                             {images.map((img, i) => (
@@ -90,9 +91,9 @@ export default function ProductDetailClient({
                                 </button>
                             ))}
                         </div>
-
                         {/* ✅ CENTER: Main Image */}
                         <div className="col-start-1 lg:row-start-1 lg:col-start-2 lg:col-span-5 flex justify-center">
+
                             <div className="rounded-lg p-4 max-h-[600px]">
                                 <Image
                                     src={activeImage}
@@ -107,7 +108,7 @@ export default function ProductDetailClient({
                         {/* ✅ RIGHT: Product Info */}
                         <div className="lg:col-span-5">
                             <h1 className="text-2xl font-bold text-gray-800 leading-snug">
-                                Gạo Lứt Tím đóng túi 1KG Vinh Hiển – Đạt chuẩn HACCP – Ngọt cơm, dinh dưỡng
+                                {product.name}
                             </h1>
 
                             {/* <div className="text-red-600 mt-3 text-xl font-bold">Liên hệ</div> */}
@@ -123,25 +124,14 @@ export default function ProductDetailClient({
                             </div>
 
                             {/* Description */}
-                            <div className="mt-5 space-y-4 text-gray-700">
-                                <h2 className="text-lg font-bold text-green-700">Mô tả</h2>
-                                <p className="px-5 py-2.5 border-l-5 border-[#eeeeee]">
-                                    Công ty <strong>CỔ PHẦN VINH HIỂN FARM</strong> xin công bố sản phẩm mới
-                                    – <strong>Gạo Lứt Tím Vinh Hiển Túi 1kg</strong> – Đạt chuẩn HACCP.
-                                </p>
-
-                                <h2 className="text-lg font-bold text-green-700">Câu chuyện ra đời</h2>
-                                <p>
-                                    Gạo Lứt Tím được chọn lọc từ giống lúa đặc biệt, giữ nguyên lớp cám.
-                                </p>
-
-                                <h2 className="text-lg font-bold text-green-700">Đặc tính sản phẩm</h2>
-                                <ul className="list-disc ml-5 space-y-2">
-                                    <li>Mùi thơm nhẹ, đậm đà, mềm, dẻo.</li>
-                                    <li>Cơm ngọt, giàu dinh dưỡng.</li>
-                                    <li>Nấu được nhiều món: cơm, cháo, cơm niêu.</li>
-                                </ul>
-                            </div>
+                            <div
+                                className="mt-5 prose prose-green max-w-none
+                                        prose-h2:text-lg prose-h2:font-bold prose-h2:text-green-700
+                                        prose-p:text-gray-700
+                                        prose-ul:list-disc prose-ul:ml-5 prose-ul:space-y-2
+                                        prose-strong:font-bold"
+                                dangerouslySetInnerHTML={{ __html: product.description || '' }}
+                            />
                         </div>
 
                     </div>

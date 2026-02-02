@@ -35,14 +35,14 @@ export default function ItemCardProduct({ item, cate }: { item: Product, cate: s
             </div>
             <div className="px-5 pb-8 pt-3">
                 <h3 className="text-[20px] font-semibold">{item.name}</h3>
-                <div className="text-sm mt-5 mb-2.5">
+                {/* <div className="text-sm mt-5 mb-2.5">
                     <span className="text-black text-[20px] font-bold mr-2">
                         {item.price.toLocaleString()} đ
                     </span>
                     <span className="line-through text-red-600 text-[14px]">
                         {item.salePrice.toLocaleString()} đ
                     </span>
-                </div>
+                </div> */}
                 <div className="flex justify-center items-center">
 
                     <Link

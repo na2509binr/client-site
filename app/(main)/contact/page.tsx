@@ -111,10 +111,6 @@
 //                     </div>
 //                 </div>
 //             </div>
-
-
-
-
 //         </div>
 //     );
 // }
@@ -220,8 +216,6 @@ const defaultContactData: ContactInfo = {
 
 
 
-// return (
-
 
 const ContactSectionEnhanced: React.FC<ContactSectionProps> = ({
     data = defaultContactData,
@@ -276,21 +270,6 @@ const ContactSectionEnhanced: React.FC<ContactSectionProps> = ({
                                 </div>
                             </div>
 
-                            {/* Representative Office */}
-                            {/* <div className="flex items-start gap-4">
-                                <div className="shrink-0 mt-0.5">
-                                    <BuildingIcon />
-                                </div>
-                                <div>
-                                    <h3 className="text-base md:text-[17px] font-bold text-gray-800 mb-1.5">
-                                        {data.representative.title}
-                                    </h3>
-                                    <p className="text-[15px] text-gray-600 leading-relaxed">
-                                        {configSite.address}
-                                    </p>
-                                </div>
-                            </div> */}
-
                             {/* Contact Info */}
                             <div className="flex items-start gap-4">
                                 <div className="shrink-0 mt-0.5">
@@ -323,5 +302,7 @@ const ContactSectionEnhanced: React.FC<ContactSectionProps> = ({
         </>
     );
 };
+
+
 
 export default ContactSectionEnhanced;

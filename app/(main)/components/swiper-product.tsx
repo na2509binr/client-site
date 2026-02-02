@@ -63,7 +63,7 @@ export default function SwiperProduct({ products }: ListProductProps) {
                                 </span>
                             </div>
                             <Link
-                                href={"/product/gao/" + toSlug(product.name)}
+                                href={"/product/" + toSlug(product.name)}
                                 className="inline-block mt-3 px-4 py-2 text-[12px] text-[#ff281c] border-2 border-[#ff281c] rounded-md hover:bg-[#ff281c] hover:text-white transition-all duration-300 ease-in-out"
                             >
                                 XEM CHI TIẾT
@@ -91,16 +91,16 @@ export default function SwiperProduct({ products }: ListProductProps) {
                 </div>
                 <div className="px-5 pb-8 pt-3">
                     <h3 className="text-[20px] font-semibold">{product.name}</h3>
-                    <div className="text-sm mt-5 mb-2.5">
+                    {/* <div className="text-sm mt-5 mb-2.5">
                         <span className="text-black text-[20px] font-bold mr-2">
                             {product.price.toLocaleString()} đ
                         </span>
                         <span className="line-through text-red-600 text-[14px]">
                             {product.salePrice.toLocaleString()} đ
                         </span>
-                    </div>
+                    </div> */}
                     <Link
-                        href={"/product/gao/" + toSlug(product.name)}
+                        href={"/product/" + toSlug(product.name)}
                         className="inline-block mt-3 px-4 py-2 text-[12px] text-[#ff281c] border-2 border-[#ff281c] rounded-md hover:bg-[#ff281c] hover:text-white transition-all duration-300 ease-in-out"
                     >
                         XEM CHI TIẾT
