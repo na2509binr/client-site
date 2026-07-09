@@ -144,7 +144,7 @@ const VinhPhatHeader: React.FC<HeaderProps> = ({
 
   return (
     <header className="w-full bg-white shadow-md relative z-50">
-      <div className="hidden px-2 xl:px-0 xl:grid xl:grid-cols-[1fr_6fr_1fr] bg-transparent py-4">
+      <div className="hidden px-2 lg:px-0 lg:grid lg:grid-cols-[1fr_6fr_1fr] bg-transparent py-4">
       {/* <div className="hidden px-2 lg:block xl:px-0 xl:grid xl:grid-cols-[1fr_8fr_1fr] 2xl:grid-cols-[1fr_6fr_1fr] bg-transparent"> */}
         <nav className="col-start-2 grid grid-cols-[1fr_8fr_2fr_8fr_1fr] h-auto items-center justify-between">
           {/* Left side - Home icon */}
